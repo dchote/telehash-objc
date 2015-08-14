@@ -1,0 +1,6 @@
+[submodule "externals/--force"]
+	path = externals/--force
+	url = git@github.com:CocoaLumberjack/CocoaLumberjack.git
+[submodule "externals/CocoaLumberjack"]
+	path = externals/CocoaLumberjack
+	url = git@github.com:CocoaLumberjack/CocoaLumberjack.git
