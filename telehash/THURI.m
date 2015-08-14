@@ -1,17 +1,13 @@
 //
-//  THMesh.m
+//  THURI.m
 //  telehash
 //
 //  Created by Daniel Chote on 8/13/15.
 //  Copyright (c) 2015 Daniel Chote. All rights reserved.
 //
 
-#import "THMesh.h"
+#import "THURI.h"
 
-@implementation THMesh
-
-- (void)bootstrap {
-	
-}
+@implementation THURI
 
 @end

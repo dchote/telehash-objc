@@ -17,6 +17,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	mesh = [[THMesh alloc] init];
+	[mesh bootstrap];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -24,7 +25,7 @@
 }
 
 - (void)ready {
-	NSLog(@"fucking ready");
+	NSLog(@"about fucking time");
 }
 
 - (void)error:(NSError*)error {

@@ -15,15 +15,3 @@ FOUNDATION_EXPORT double telehashVersionNumber;
 FOUNDATION_EXPORT const unsigned char telehashVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <telehash/PublicHeader.h>
-#import "THHashname.h"
-#import "E3X.h"
-#import "THMesh.h"
-#import "THLink.h"
-#import "THTransportAssistant.h"
-#import "THTransport.h"
-#import "THTransportNetworkAdapter.h"
-#import "THTransportSerial.h"
-#import "THTransportMultipeerConnectivity.h"
-#import "THPacket.h"
-#import "THChannel.h"
-

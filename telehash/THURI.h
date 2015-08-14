@@ -1,5 +1,5 @@
 //
-//  THMesh.h
+//  THURI.h
 //  telehash
 //
 //  Created by Daniel Chote on 8/13/15.
@@ -8,11 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol THMeshDelegate <NSObject>
-- (void)ready;
-- (void)error:(NSError*)error;
-@end;
+@interface THURI : NSObject
 
-@interface THMesh : NSObject
-- (void)bootstrap;
 @end

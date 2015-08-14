@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "telehash.h"
+#import "THMesh.h"
 
 
 @interface AppDelegate : NSObject <THMeshDelegate, NSApplicationDelegate> {
