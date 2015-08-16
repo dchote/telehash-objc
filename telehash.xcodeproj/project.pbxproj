@@ -10,12 +10,16 @@
 		6579F97B1AE42759005E55A1 /* telehash.h in Headers */ = {isa = PBXBuildFile; fileRef = 6579F97A1AE42759005E55A1 /* telehash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6579F9811AE42759005E55A1 /* telehash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6579F9751AE42759005E55A1 /* telehash.framework */; };
 		6579F9881AE42759005E55A1 /* telehashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579F9871AE42759005E55A1 /* telehashTests.m */; };
+		657D86771B7FA63E009282BE /* THEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 657D86751B7FA63E009282BE /* THEndpoint.h */; };
+		657D86781B7FA63E009282BE /* THEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D86761B7FA63E009282BE /* THEndpoint.m */; };
+		657D867F1B7FA81F009282BE /* THTransportNetworkAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 657D867D1B7FA81F009282BE /* THTransportNetworkAdapter.h */; };
+		657D86801B7FA81F009282BE /* THTransportNetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D867E1B7FA81F009282BE /* THTransportNetworkAdapter.m */; };
+		657D86831B7FA8C8009282BE /* THMeshConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 657D86811B7FA8C8009282BE /* THMeshConfiguration.h */; };
+		657D86841B7FA8C8009282BE /* THMeshConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D86821B7FA8C8009282BE /* THMeshConfiguration.m */; };
 		65A53B9D1B7D160D00150176 /* THMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 65A53B9B1B7D160D00150176 /* THMesh.h */; };
 		65A53B9E1B7D160D00150176 /* THMesh.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A53B9C1B7D160D00150176 /* THMesh.m */; };
 		65A53BA11B7D164600150176 /* THTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 65A53B9F1B7D164600150176 /* THTransport.h */; };
 		65A53BA21B7D164600150176 /* THTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A53BA01B7D164600150176 /* THTransport.m */; };
-		65A53BA51B7D16A400150176 /* THTransportNetworkAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 65A53BA31B7D16A400150176 /* THTransportNetworkAdapter.h */; };
-		65A53BA61B7D16A400150176 /* THTransportNetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A53BA41B7D16A400150176 /* THTransportNetworkAdapter.m */; };
 		65A53BAB1B7D171000150176 /* THLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 65A53BA91B7D171000150176 /* THLink.h */; };
 		65A53BAC1B7D171000150176 /* THLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A53BAA1B7D171000150176 /* THLink.m */; };
 		65A53BB01B7D173F00150176 /* THHashname.h in Headers */ = {isa = PBXBuildFile; fileRef = 65A53BAE1B7D173F00150176 /* THHashname.h */; };
@@ -58,6 +62,10 @@
 		65FC87851B7D759A00F18B12 /* THURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FC87821B7D759A00F18B12 /* THURI.m */; };
 		65FC87871B7D759A00F18B12 /* THURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FC87821B7D759A00F18B12 /* THURI.m */; };
 		65FC87881B7D776200F18B12 /* telehash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6579F9751AE42759005E55A1 /* telehash.framework */; };
+		65FC878D1B7E183E00F18B12 /* THLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FC878B1B7E183E00F18B12 /* THLog.h */; };
+		65FC878E1B7E183E00F18B12 /* THLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FC878C1B7E183E00F18B12 /* THLog.m */; };
+		65FC878F1B7E183E00F18B12 /* THLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FC878C1B7E183E00F18B12 /* THLog.m */; };
+		65FC87911B7E183E00F18B12 /* THLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FC878C1B7E183E00F18B12 /* THLog.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,12 +92,16 @@
 		6579F9801AE42759005E55A1 /* telehashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = telehashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6579F9861AE42759005E55A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6579F9871AE42759005E55A1 /* telehashTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = telehashTests.m; sourceTree = "<group>"; };
+		657D86751B7FA63E009282BE /* THEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THEndpoint.h; sourceTree = "<group>"; };
+		657D86761B7FA63E009282BE /* THEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THEndpoint.m; sourceTree = "<group>"; };
+		657D867D1B7FA81F009282BE /* THTransportNetworkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTransportNetworkAdapter.h; sourceTree = "<group>"; };
+		657D867E1B7FA81F009282BE /* THTransportNetworkAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTransportNetworkAdapter.m; sourceTree = "<group>"; };
+		657D86811B7FA8C8009282BE /* THMeshConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMeshConfiguration.h; sourceTree = "<group>"; };
+		657D86821B7FA8C8009282BE /* THMeshConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMeshConfiguration.m; sourceTree = "<group>"; };
 		65A53B9B1B7D160D00150176 /* THMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMesh.h; sourceTree = "<group>"; };
 		65A53B9C1B7D160D00150176 /* THMesh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMesh.m; sourceTree = "<group>"; };
 		65A53B9F1B7D164600150176 /* THTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTransport.h; sourceTree = "<group>"; };
 		65A53BA01B7D164600150176 /* THTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTransport.m; sourceTree = "<group>"; };
-		65A53BA31B7D16A400150176 /* THTransportNetworkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTransportNetworkAdapter.h; sourceTree = "<group>"; };
-		65A53BA41B7D16A400150176 /* THTransportNetworkAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTransportNetworkAdapter.m; sourceTree = "<group>"; };
 		65A53BA91B7D171000150176 /* THLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLink.h; sourceTree = "<group>"; };
 		65A53BAA1B7D171000150176 /* THLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLink.m; sourceTree = "<group>"; };
 		65A53BAE1B7D173F00150176 /* THHashname.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THHashname.h; sourceTree = "<group>"; };
@@ -128,6 +140,8 @@
 		65FC877A1B7D751F00F18B12 /* MF_Base32Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MF_Base32Additions.m; path = externals/Base32/Base32/MF_Base32Additions.m; sourceTree = SOURCE_ROOT; };
 		65FC87811B7D759A00F18B12 /* THURI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THURI.h; sourceTree = "<group>"; };
 		65FC87821B7D759A00F18B12 /* THURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THURI.m; sourceTree = "<group>"; };
+		65FC878B1B7E183E00F18B12 /* THLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLog.h; sourceTree = "<group>"; };
+		65FC878C1B7E183E00F18B12 /* THLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLog.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,13 +206,14 @@
 			isa = PBXGroup;
 			children = (
 				6579F97A1AE42759005E55A1 /* telehash.h */,
-				65A53BAD1B7D172F00150176 /* Hashname */,
-				65FC87801B7D758800F18B12 /* URI */,
+				65A53BAD1B7D172F00150176 /* Endpoint */,
 				65A53BB71B7D178500150176 /* E3X */,
 				65A53BA81B7D16FC00150176 /* Mesh */,
 				65A53BA71B7D16A900150176 /* Transports */,
 				65A53BB21B7D175000150176 /* Packet */,
 				65A53BB81B7D17DF00150176 /* Channels */,
+				65FC878A1B7E182E00F18B12 /* Util */,
+				65FC87891B7D789700F18B12 /* Externals */,
 			);
 			path = telehash;
 			sourceTree = "<group>";
@@ -243,8 +258,8 @@
 				65FC87621B7D700E00F18B12 /* THTransportAssistant.m */,
 				65A53B9F1B7D164600150176 /* THTransport.h */,
 				65A53BA01B7D164600150176 /* THTransport.m */,
-				65A53BA31B7D16A400150176 /* THTransportNetworkAdapter.h */,
-				65A53BA41B7D16A400150176 /* THTransportNetworkAdapter.m */,
+				657D867D1B7FA81F009282BE /* THTransportNetworkAdapter.h */,
+				657D867E1B7FA81F009282BE /* THTransportNetworkAdapter.m */,
 				65FC876A1B7D743D00F18B12 /* THTransportSerial.h */,
 				65FC876B1B7D743D00F18B12 /* THTransportSerial.m */,
 				65FC87711B7D746100F18B12 /* THTransportMultipeerConnectivity.h */,
@@ -258,6 +273,8 @@
 			children = (
 				65A53B9B1B7D160D00150176 /* THMesh.h */,
 				65A53B9C1B7D160D00150176 /* THMesh.m */,
+				657D86811B7FA8C8009282BE /* THMeshConfiguration.h */,
+				657D86821B7FA8C8009282BE /* THMeshConfiguration.m */,
 				65A53BA91B7D171000150176 /* THLink.h */,
 				65A53BAA1B7D171000150176 /* THLink.m */,
 				65A53BF71B7D1E6700150176 /* THPipe.h */,
@@ -266,15 +283,17 @@
 			name = Mesh;
 			sourceTree = "<group>";
 		};
-		65A53BAD1B7D172F00150176 /* Hashname */ = {
+		65A53BAD1B7D172F00150176 /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
+				657D86751B7FA63E009282BE /* THEndpoint.h */,
+				657D86761B7FA63E009282BE /* THEndpoint.m */,
 				65A53BAE1B7D173F00150176 /* THHashname.h */,
 				65A53BAF1B7D173F00150176 /* THHashname.m */,
-				65FC87791B7D751F00F18B12 /* MF_Base32Additions.h */,
-				65FC877A1B7D751F00F18B12 /* MF_Base32Additions.m */,
+				65FC87811B7D759A00F18B12 /* THURI.h */,
+				65FC87821B7D759A00F18B12 /* THURI.m */,
 			);
-			name = Hashname;
+			name = Endpoint;
 			sourceTree = "<group>";
 		};
 		65A53BB21B7D175000150176 /* Packet */ = {
@@ -364,13 +383,22 @@
 			name = "Cipher Sets";
 			sourceTree = "<group>";
 		};
-		65FC87801B7D758800F18B12 /* URI */ = {
+		65FC87891B7D789700F18B12 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
-				65FC87811B7D759A00F18B12 /* THURI.h */,
-				65FC87821B7D759A00F18B12 /* THURI.m */,
+				65FC87791B7D751F00F18B12 /* MF_Base32Additions.h */,
+				65FC877A1B7D751F00F18B12 /* MF_Base32Additions.m */,
 			);
-			name = URI;
+			name = Externals;
+			sourceTree = "<group>";
+		};
+		65FC878A1B7E182E00F18B12 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				65FC878B1B7E183E00F18B12 /* THLog.h */,
+				65FC878C1B7E183E00F18B12 /* THLog.m */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,21 +411,24 @@
 				65A53BB51B7D176000150176 /* THPacket.h in Headers */,
 				65A53BED1B7D1CBF00150176 /* E3X-cs3a.h in Headers */,
 				65A53BA11B7D164600150176 /* THTransport.h in Headers */,
-				65FC87731B7D746100F18B12 /* THTransportMultipeerConnectivity.h in Headers */,
+				657D86771B7FA63E009282BE /* THEndpoint.h in Headers */,
 				65A53BF91B7D1E6700150176 /* THPipe.h in Headers */,
-				65A53BA51B7D16A400150176 /* THTransportNetworkAdapter.h in Headers */,
 				65A53BE81B7D1C8900150176 /* E3X.h in Headers */,
+				657D86831B7FA8C8009282BE /* THMeshConfiguration.h in Headers */,
 				65A53BF51B7D1D7800150176 /* E3X-cs1a.h in Headers */,
+				65FC878D1B7E183E00F18B12 /* THLog.h in Headers */,
 				65A53BAB1B7D171000150176 /* THLink.h in Headers */,
 				6579F97B1AE42759005E55A1 /* telehash.h in Headers */,
 				65A53B9D1B7D160D00150176 /* THMesh.h in Headers */,
 				65A53BF11B7D1D6B00150176 /* E3X-cs2a.h in Headers */,
 				65FC877B1B7D751F00F18B12 /* MF_Base32Additions.h in Headers */,
 				65FC87631B7D700E00F18B12 /* THTransportAssistant.h in Headers */,
+				657D867F1B7FA81F009282BE /* THTransportNetworkAdapter.h in Headers */,
+				65FC876C1B7D743D00F18B12 /* THTransportSerial.h in Headers */,
+				65FC87731B7D746100F18B12 /* THTransportMultipeerConnectivity.h in Headers */,
 				65A53BBB1B7D17F700150176 /* THChannel.h in Headers */,
 				65FC87831B7D759A00F18B12 /* THURI.h in Headers */,
 				65A53BB01B7D173F00150176 /* THHashname.h in Headers */,
-				65FC876C1B7D743D00F18B12 /* THTransportSerial.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,13 +589,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A53BA21B7D164600150176 /* THTransport.m in Sources */,
 				65FC877C1B7D751F00F18B12 /* MF_Base32Additions.m in Sources */,
+				657D86781B7FA63E009282BE /* THEndpoint.m in Sources */,
 				65A53BF61B7D1D7800150176 /* E3X-cs1a.m in Sources */,
 				65A53BFA1B7D1E6700150176 /* THPipe.m in Sources */,
 				65FC87641B7D700E00F18B12 /* THTransportAssistant.m in Sources */,
 				65FC87741B7D746100F18B12 /* THTransportMultipeerConnectivity.m in Sources */,
 				65A53BE91B7D1C8900150176 /* E3X.m in Sources */,
+				65FC878E1B7E183E00F18B12 /* THLog.m in Sources */,
 				65A53BF21B7D1D6B00150176 /* E3X-cs2a.m in Sources */,
+				657D86841B7FA8C8009282BE /* THMeshConfiguration.m in Sources */,
+				657D86801B7FA81F009282BE /* THTransportNetworkAdapter.m in Sources */,
 				65FC876D1B7D743D00F18B12 /* THTransportSerial.m in Sources */,
 				65A53B9E1B7D160D00150176 /* THMesh.m in Sources */,
 				65A53BEE1B7D1CBF00150176 /* E3X-cs3a.m in Sources */,
@@ -572,8 +608,6 @@
 				65FC87841B7D759A00F18B12 /* THURI.m in Sources */,
 				65A53BAC1B7D171000150176 /* THLink.m in Sources */,
 				65A53BBC1B7D17F700150176 /* THChannel.m in Sources */,
-				65A53BA21B7D164600150176 /* THTransport.m in Sources */,
-				65A53BA61B7D16A400150176 /* THTransportNetworkAdapter.m in Sources */,
 				65A53BB61B7D176000150176 /* THPacket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,6 +616,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65FC878F1B7E183E00F18B12 /* THLog.m in Sources */,
 				65FC877D1B7D751F00F18B12 /* MF_Base32Additions.m in Sources */,
 				65FC87851B7D759A00F18B12 /* THURI.m in Sources */,
 				65FC87751B7D746100F18B12 /* THTransportMultipeerConnectivity.m in Sources */,
@@ -603,6 +638,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65FC87911B7E183E00F18B12 /* THLog.m in Sources */,
 				65FC877F1B7D751F00F18B12 /* MF_Base32Additions.m in Sources */,
 				65FC87871B7D759A00F18B12 /* THURI.m in Sources */,
 				65FC87771B7D746100F18B12 /* THTransportMultipeerConnectivity.m in Sources */,
@@ -730,10 +766,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/externals/CocoaLumberjack/Build/Products/Debug",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = telehash/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -754,10 +787,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/externals/CocoaLumberjack/Build/Products/Debug",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = telehash/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -776,7 +806,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
-					"$(PROJECT_DIR)/externals/CocoaLumberjack/Build/Products/Debug",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -792,11 +821,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-					"$(PROJECT_DIR)/externals/CocoaLumberjack/Build/Products/Debug",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_FRAMEWORKS_DIR)";
 				INFOPLIST_FILE = telehashTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -809,10 +834,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/externals/CocoaLumberjack/Build/Products/Debug",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -829,10 +851,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/externals/CocoaLumberjack/Build/Products/Debug",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Telehash Tester/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -847,7 +866,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
-					"$(PROJECT_DIR)/externals/CocoaLumberjack/Build/Products/Debug",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -868,7 +886,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
-					"$(PROJECT_DIR)/externals/CocoaLumberjack/Build/Products/Debug",
 				);
 				INFOPLIST_FILE = "Telehash TesterTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";

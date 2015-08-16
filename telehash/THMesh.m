@@ -10,8 +10,42 @@
 
 @implementation THMesh
 
-- (void)bootstrap {
++ (id)initWithConfig:(THMeshConfiguration*)config {
+	THMesh* mesh = [[THMesh alloc] init];
+	
+	[mesh bootstrapWithConfig:config];
+	
+	return mesh;
+}
+
+- (id)init {
+	if (self) {
+		self.transportAssistant = [[THTransportAssistant alloc] init];
+		self.transports = [NSMutableArray array];
+	}
+	
+	return self;
+}
+
+
+- (void)bootstrapWithConfig:(THMeshConfiguration*)config {
+	self.config = config;
+	
+	// determine transports
+	for (THTransport* transport in [self.transportAssistant getAllTransports]) {
+		THLogDebugMessage(@"transport %@", [transport description]);
+	}
+	
 	
 }
 
+- (void)shutdown {
+	
+}
+
+
+- (void)transportStateChange:(THTransport*)transport
+{
+	
+}
 @end

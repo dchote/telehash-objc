@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "THTransport.h"
+
 
 @interface THTransportSerial : NSObject
 

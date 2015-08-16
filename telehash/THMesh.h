@@ -8,11 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
+#import "THLog.h"
+#import "THMeshConfiguration.h"
+#import "THTransportAssistant.h"
+
+
 @protocol THMeshDelegate <NSObject>
 - (void)ready;
 - (void)error:(NSError*)error;
 @end;
 
-@interface THMesh : NSObject
-- (void)bootstrap;
+
+
+
+@interface THMesh : NSObject <THTransportAssistantDelegate>
+
+@property THMeshConfiguration* config;
+@property THTransportAssistant* transportAssistant;
+@property NSMutableArray* transports;
+
++ (id)initWithConfig:(THMeshConfiguration*)config;
+- (void)bootstrapWithConfig:(THMeshConfiguration*)config;
+- (void)shutdown;
 @end

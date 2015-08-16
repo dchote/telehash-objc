@@ -16,16 +16,26 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	mesh = [[THMesh alloc] init];
-	[mesh bootstrap];
+	logger = [[THLog alloc] initWithLoggedEventTypes:[NSArray arrayWithObject:THLAllEvents] classNames:[NSArray arrayWithObject:THLAllClasses]];
+	
+	THLogInfoMessage(@"We are starting up");
+	
+	THMeshConfiguration* config = [[THMeshConfiguration alloc] init];
+	
+	mesh = [THMesh initWithConfig:config];
+	
+	
+	
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-	// Insert code here to tear down your application
+	if (mesh) {
+		[mesh shutdown];
+	}
 }
 
 - (void)ready {
-	NSLog(@"about fucking time");
+	THLogInfoMessage(@"Mesh is ready");
 }
 
 - (void)error:(NSError*)error {

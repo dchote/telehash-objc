@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+
+#import "THTransport.h"
+#import "THTransportNetworkAdapter.h"
+//#import "THTransportSerial.h"
+//#import "THTransportMultipeerConnectivity.h"
+
+@protocol THTransportAssistantDelegate <NSObject>
+- (void)transportStateChange:(THTransport*)transport;
+@end;
 
 @interface THTransportAssistant : NSObject
 
+@property NSMutableDictionary* allTransports;
+
+- (NSArray*)getAllTransports;
 @end

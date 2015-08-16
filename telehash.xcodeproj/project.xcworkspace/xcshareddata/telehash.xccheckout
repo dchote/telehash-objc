@@ -7,24 +7,20 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>42EC0020-6D1C-4E0E-9BA1-1F6CDBEA68F6</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>telehash</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>35B5C9A93714EC9BEB56BAE809C5551E5C66E52D</key>
-		<string>https://github.com/CocoaLumberjack/CocoaLumberjack.git</string>
 		<key>67EBCDBBD4CFC0441D68D6AF5F100A0D6FF69B1A</key>
 		<string>https://github.com/ekscrypto/Base32.git</string>
 		<key>8B1F7173A1199AD19B4AC31DEF27AFBDFE9C8457</key>
 		<string>https://github.com/dchote/telehash-objc.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>telehash.xcodeproj/project.xcworkspace</string>
+	<string>telehash.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>35B5C9A93714EC9BEB56BAE809C5551E5C66E52D</key>
-		<string>../..externals/CocoaLumberjack/</string>
 		<key>67EBCDBBD4CFC0441D68D6AF5F100A0D6FF69B1A</key>
-		<string>../..externals/Base32/</string>
+		<string>../..externals/Base32</string>
 		<key>8B1F7173A1199AD19B4AC31DEF27AFBDFE9C8457</key>
 		<string>../..</string>
 	</dict>
@@ -43,14 +39,6 @@
 			<string>67EBCDBBD4CFC0441D68D6AF5F100A0D6FF69B1A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Base32</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>35B5C9A93714EC9BEB56BAE809C5551E5C66E52D</string>
-			<key>IDESourceControlWCCName</key>
-			<string>CocoaLumberjack</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#import "THLog.h"
+
+
 @interface THTransport : NSObject
 
+@property NSString* identifier;
+@property NSString* name;
+
+@property int MTU;
+
+
+- (NSDictionary*)description;
 @end

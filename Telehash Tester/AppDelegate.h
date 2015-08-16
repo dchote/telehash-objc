@@ -7,10 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "THMesh.h"
 
+#import "THLog.h"
+#import "THMesh.h"
+#import "THMeshConfiguration.h"
+#import "THTransport.h"
 
 @interface AppDelegate : NSObject <THMeshDelegate, NSApplicationDelegate> {
+	THLog* logger;
 	THMesh* mesh;
 }
 
