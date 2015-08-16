@@ -10,6 +10,14 @@
 
 @implementation THTransportNetworkAdapter
 
+- (BOOL)hasIPAddress {
+	if (self.IPv4Address || self.IPv6Address) {
+		return YES;
+	}
+	
+	return NO;
+}
+
 - (NSDictionary*)description {
 	NSMutableDictionary* description = [NSMutableDictionary dictionaryWithDictionary:[super description]];
 	

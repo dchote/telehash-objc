@@ -21,6 +21,7 @@
 	THLogInfoMessage(@"We are starting up");
 	
 	THMeshConfiguration* config = [[THMeshConfiguration alloc] init];
+	//config.enabledTransportIDs = [NSArray arrayWithObjects:@"en0", @"en1", nil];
 	
 	mesh = [THMesh initWithConfig:config];
 	

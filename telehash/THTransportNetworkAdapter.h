@@ -20,6 +20,7 @@
 @property NSString* IPv6Netmask;
 
 
+- (BOOL)hasIPAddress;
 - (NSDictionary*)description;
 
 @end

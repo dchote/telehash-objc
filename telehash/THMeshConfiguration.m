@@ -10,4 +10,12 @@
 
 @implementation THMeshConfiguration
 
+- (id)init {
+	if (self) {
+		self.enabledTransportIDs = nil;
+	}
+	
+	return self;
+}
+
 @end

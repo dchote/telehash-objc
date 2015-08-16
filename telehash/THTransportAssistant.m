@@ -16,6 +16,7 @@
 #import <net/if_dl.h>
 #import <net/if.h>
 
+
 @implementation THTransportAssistant
 
 - (id)init {
@@ -25,6 +26,7 @@
 	
 	return self;
 }
+
 
 
 - (NSArray*)getAllTransports {
@@ -70,7 +72,7 @@
 				networkAdapter.IPv6Netmask = [NSString stringWithUTF8String:tmp];
 			}
 			
-			if ((temp_addr->ifa_flags & IFF_UP) == IFF_UP) {
+			if ((temp_addr->ifa_flags & (IFF_UP|IFF_RUNNING)) != 0 && [networkAdapter hasIPAddress]) {
 				networkAdapter.active = YES;
 			}
 			

@@ -33,7 +33,10 @@
 	
 	// determine transports
 	for (THTransport* transport in [self.transportAssistant getAllTransports]) {
-		THLogDebugMessage(@"transport %@", [transport description]);
+		if (config.enabledTransportIDs == nil || [config.enabledTransportIDs containsObject:transport.identifier]) {
+			THLogDebugMessage(@"Adding transport %@ with properties %@ to active transport list.", transport.identifier, [transport description]);
+			[self.transports addObject:transport];
+		}
 	}
 	
 	

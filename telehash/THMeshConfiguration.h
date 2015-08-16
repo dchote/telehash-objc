@@ -10,4 +10,6 @@
 
 @interface THMeshConfiguration : NSObject
 
+@property NSArray* enabledTransportIDs;
+
 @end
