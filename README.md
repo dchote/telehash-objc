@@ -1,5 +1,4 @@
 # telehash-objc
-===============================================
 
 Objective-C implementation of the full [Telehash](https://github.com/telehash) V3 protocol.
 
