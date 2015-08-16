@@ -13,6 +13,7 @@
 
 @interface THTransport : NSObject
 
+@property BOOL active;
 @property NSString* identifier;
 @property NSString* name;
 

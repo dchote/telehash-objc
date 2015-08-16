@@ -14,12 +14,13 @@
 #import <arpa/inet.h>
 #import <net/ethernet.h>
 #import <net/if_dl.h>
+#import <net/if.h>
 
 @implementation THTransportAssistant
 
 - (id)init {
 	if (self) {
-		self.allTransports = [[NSMutableDictionary alloc] init];
+		self.allTransports = [NSMutableDictionary dictionary];
 	}
 	
 	return self;
@@ -32,7 +33,6 @@
 
 	// Network adapters
 
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
 	struct ifaddrs *interfaces = NULL;
 	struct ifaddrs *temp_addr = NULL;
 	
@@ -70,7 +70,11 @@
 				networkAdapter.IPv6Netmask = [NSString stringWithUTF8String:tmp];
 			}
 			
-			[self.allTransports setObject:networkAdapter forKey:networkAdapter.identifier];
+			if ((temp_addr->ifa_flags & IFF_UP) == IFF_UP) {
+				networkAdapter.active = YES;
+			}
+			
+			[self.allTransports setObject:networkAdapter forKey:identifier];
 			
 			if (isNew) {
 				[transports addObject:networkAdapter];
@@ -82,37 +86,39 @@
 	
 	freeifaddrs(interfaces);
 	
-#elif TARGET_OS_MAC
-
-	NSArray* interfaces = CFBridgingRelease(SCNetworkInterfaceCopyAll());
+#if TARGET_OS_MAC
+	// Can we get any extra info about our interfaces on OSX?
 	
-	NSEnumerator* enumerator = [interfaces objectEnumerator];
+	NSArray* osxInterfaces = CFBridgingRelease(SCNetworkInterfaceCopyAll());
+	
+	NSEnumerator* enumerator = [osxInterfaces objectEnumerator];
 	SCNetworkInterfaceRef interface;
 	
 	while ((interface = CFBridgingRetain([enumerator nextObject]))) {
 		NSString* hardwareAddress = CFBridgingRelease(SCNetworkInterfaceGetHardwareAddressString(interface));
-		
-		if (hardwareAddress != nil) {
-			THTransportNetworkAdapter* networkAdapter = [[THTransportNetworkAdapter alloc] init];
+		NSString* identifier = CFBridgingRelease(SCNetworkInterfaceGetBSDName(interface));
+
+		if (hardwareAddress != nil && identifier != nil) {
 			
-			networkAdapter.identifier = CFBridgingRelease(SCNetworkInterfaceGetBSDName(interface));
-			networkAdapter.name = CFBridgingRelease(SCNetworkInterfaceGetLocalizedDisplayName(interface));
-			networkAdapter.interfaceType = CFBridgingRelease(SCNetworkInterfaceGetInterfaceType(interface));
+			THTransportNetworkAdapter* networkAdapter = [self.allTransports objectForKey:identifier];
 			
-			int cur, min, max;
-			if (SCNetworkInterfaceCopyMTU(interface, &cur, &min, &max)) {
-				networkAdapter.MTU = cur;
+			if (networkAdapter != NULL) {
+				networkAdapter.name = CFBridgingRelease(SCNetworkInterfaceGetLocalizedDisplayName(interface));
+				networkAdapter.interfaceType = CFBridgingRelease(SCNetworkInterfaceGetInterfaceType(interface));
+				
+				int cur, min, max;
+				if (SCNetworkInterfaceCopyMTU(interface, &cur, &min, &max)) {
+					networkAdapter.MTU = cur;
+				}
+			
+				[self.allTransports setObject:networkAdapter forKey:identifier];
+			} else {
+				THLogDebugMessage(@"Interface %@ found via SCNetworkInterface but not getifaddrs(), ignoring...", identifier);
 			}
-			
-			[self.allTransports setObject:networkAdapter forKey:networkAdapter.identifier];
-			[transports addObject:networkAdapter];
 		}
 	}
 	
-	
 #endif
-
-	
 	
 	// Serial Ports
 	

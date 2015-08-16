@@ -15,6 +15,7 @@
 
 - (id)init {
 	if (self) {
+		self.active = NO;
 		self.MTU = 1500;
 	}
 	
@@ -24,6 +25,8 @@
 - (NSDictionary*)description {
 	NSMutableDictionary* description = [NSMutableDictionary dictionary];
 	
+	[description setObject:[NSNumber numberWithInt:self.active] forKey:@"active"];
+	[description setObject:[NSNumber numberWithInt:self.MTU] forKey:@"MTU"];
 	[description setObject:[self class] forKey:@"type"];
 	[description setObject:self.identifier forKey:@"identifier"];
 	[description setObject:self.name forKey:@"name"];
