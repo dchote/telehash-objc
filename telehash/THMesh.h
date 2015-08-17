@@ -21,7 +21,7 @@
 
 
 
-@interface THMesh : NSObject <THTransportAssistantDelegate>
+@interface THMesh : NSObject
 
 @property THMeshConfiguration* config;
 @property THTransportAssistant* transportAssistant;

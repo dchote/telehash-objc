@@ -14,9 +14,9 @@
 //#import "THTransportSerial.h"
 //#import "THTransportMultipeerConnectivity.h"
 
-@protocol THTransportAssistantDelegate <NSObject>
-- (void)transportStateChange:(THTransport*)transport;
-@end;
+extern NSString* const THTransportStateRefreshRequest;
+extern NSString* const THTransportStateChangedNotification;
+
 
 @interface THTransportAssistant : NSObject
 

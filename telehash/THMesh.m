@@ -46,9 +46,4 @@
 	
 }
 
-
-- (void)transportStateChange:(THTransport*)transport
-{
-	
-}
 @end

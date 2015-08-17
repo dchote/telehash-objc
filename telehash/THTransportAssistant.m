@@ -16,12 +16,16 @@
 #import <net/if_dl.h>
 #import <net/if.h>
 
+NSString* const THTransportStateRefreshRequest = @"THTransportStateRefreshRequest";
+NSString* const THTransportStateChangedNotification = @"THTransportStateChangedNotification";
 
 @implementation THTransportAssistant
 
 - (id)init {
 	if (self) {
 		self.allTransports = [NSMutableDictionary dictionary];
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getAllTransports) name:THTransportStateRefreshRequest object:nil];
 	}
 	
 	return self;
@@ -30,13 +34,15 @@
 
 
 - (NSArray*)getAllTransports {
-	NSMutableArray* transports = [NSMutableArray array];
-
+	
+	BOOL suppressNotifications; // only fire notifications when we already know about the transport
 
 	// Network adapters
 
 	struct ifaddrs *interfaces = NULL;
 	struct ifaddrs *temp_addr = NULL;
+	
+
 	
 	int success = 0;
 
@@ -47,13 +53,13 @@
 			NSString* identifier = [NSString stringWithUTF8String:temp_addr->ifa_name];
 			THTransportNetworkAdapter* networkAdapter = [self.allTransports objectForKey:identifier];
 			
-			BOOL isNew = NO;
 			if (networkAdapter == NULL) {
-				isNew = YES;
-
+				suppressNotifications = YES;
 				networkAdapter = [[THTransportNetworkAdapter alloc] init];
 				networkAdapter.identifier = identifier;
 				networkAdapter.name = [NSString stringWithUTF8String:temp_addr->ifa_name];
+			} else {
+				suppressNotifications = NO;
 			}
 
 			
@@ -61,26 +67,54 @@
 			memset(tmp, 0, sizeof(tmp));
 			
 			if (temp_addr->ifa_addr->sa_family == AF_INET) {
+				
 				inet_ntop(AF_INET, &((struct sockaddr_in*)temp_addr->ifa_addr)->sin_addr, tmp, sizeof(tmp));
+				NSString* oldIPv4Address = networkAdapter.IPv4Address;
 				networkAdapter.IPv4Address = [NSString stringWithUTF8String:tmp];
+				
+				if (!suppressNotifications && [oldIPv4Address isNotEqualTo:networkAdapter.IPv4Address]) {
+					[[NSNotificationCenter defaultCenter] postNotificationName:THTransportStateChangedNotification
+																		object:networkAdapter
+																	  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"oldIPv4Address", oldIPv4Address, @"IPv4Address", networkAdapter.IPv4Address, nil]];
+				}
+				
 				inet_ntop(AF_INET, &((struct sockaddr_in*)temp_addr->ifa_netmask)->sin_addr, tmp, sizeof(tmp));
 				networkAdapter.IPv4Netmask = [NSString stringWithUTF8String:tmp];
+				
+				
 			} else if (temp_addr->ifa_addr->sa_family == AF_INET6) {
+				
 				inet_ntop(AF_INET6, &((struct sockaddr_in6*)temp_addr->ifa_addr)->sin6_addr, tmp, sizeof(tmp));
+				NSString* oldIPv6Address = networkAdapter.IPv6Address;
 				networkAdapter.IPv6Address = [NSString stringWithUTF8String:tmp];
+				
+				if (!suppressNotifications && [oldIPv6Address isNotEqualTo:networkAdapter.IPv6Address]) {
+					[[NSNotificationCenter defaultCenter] postNotificationName:THTransportStateChangedNotification
+																		object:networkAdapter
+																	  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"oldIPv6Address", oldIPv6Address, @"IPv6Address", networkAdapter.IPv6Address, nil]];
+				}
+				
 				inet_ntop(AF_INET6, &((struct sockaddr_in6*)temp_addr->ifa_netmask)->sin6_addr, tmp, sizeof(tmp));
 				networkAdapter.IPv6Netmask = [NSString stringWithUTF8String:tmp];
+				
+				
 			}
 			
+			
+			BOOL wasActive = networkAdapter.active;
 			if ((temp_addr->ifa_flags & (IFF_UP|IFF_RUNNING)) != 0 && [networkAdapter hasIPAddress]) {
 				networkAdapter.active = YES;
+			} else {
+				networkAdapter.active = NO;
+			}
+			
+			if (!suppressNotifications && wasActive != networkAdapter.active) {
+				[[NSNotificationCenter defaultCenter] postNotificationName:THTransportStateChangedNotification
+																	object:networkAdapter
+																  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"wasActove", [NSNumber numberWithInt:wasActive], @"active", [NSNumber numberWithInt:networkAdapter.active], nil]];
 			}
 			
 			[self.allTransports setObject:networkAdapter forKey:identifier];
-			
-			if (isNew) {
-				[transports addObject:networkAdapter];
-			}
 
 			temp_addr = temp_addr->ifa_next;
 		}
@@ -126,6 +160,6 @@
 	
 	// Multipeer Connectivity
 	
-	return [NSArray arrayWithArray:transports];
+	return [self.allTransports allValues];
 }
 @end
