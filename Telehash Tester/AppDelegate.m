@@ -25,9 +25,7 @@
 	config.listenPort = 42424;
 	
 	mesh = [THMesh initWithConfig:config];
-	
-	
-	
+	mesh.delegate = self;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

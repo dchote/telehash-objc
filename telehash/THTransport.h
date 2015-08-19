@@ -21,6 +21,8 @@
 
 @interface THTransport : NSObject <GCDAsyncUdpSocketDelegate>
 
+@property id delegate;
+
 @property BOOL active;
 @property NSString* identifier;
 @property NSString* name;

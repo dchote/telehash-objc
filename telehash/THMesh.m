@@ -37,6 +37,8 @@
 			THLogDebugMessage(@"Adding transport %@ with properties %@ to active transport list.", transport.identifier, [transport description]);
 			[self.transports addObject:transport];
 			
+			transport.delegate = self;
+			
 			// initialize each transport type accordingly
 			if ([transport isKindOfClass:[THTransportNetworkAdapter class]]) {
 				[(THTransportNetworkAdapter*)transport bindToPort:config.listenPort];
