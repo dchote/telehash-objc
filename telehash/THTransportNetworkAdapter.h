@@ -11,6 +11,8 @@
 
 @interface THTransportNetworkAdapter : THTransport
 
+@property id delegate;
+
 @property NSString* interfaceType;
 
 @property NSString* IPv4Address;
@@ -22,5 +24,7 @@
 
 - (BOOL)hasIPAddress;
 - (NSDictionary*)description;
+- (void)bindToPort:(uint16_t)port;
+
 
 @end

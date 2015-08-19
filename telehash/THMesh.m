@@ -36,6 +36,11 @@
 		if (config.enabledTransportIDs == nil || [config.enabledTransportIDs containsObject:transport.identifier]) {
 			THLogDebugMessage(@"Adding transport %@ with properties %@ to active transport list.", transport.identifier, [transport description]);
 			[self.transports addObject:transport];
+			
+			// initialize each transport type accordingly
+			if ([transport isKindOfClass:[THTransportNetworkAdapter class]]) {
+				[(THTransportNetworkAdapter*)transport bindToPort:config.listenPort];
+			}
 		}
 	}
 	
@@ -44,6 +49,20 @@
 
 - (void)shutdown {
 	
+}
+
+
+
+
+
+- (void)THTransportReady:(THTransport*)transport {
+	THLogInfoMessage(@"transport %@ is now ready", transport.identifier);
+	
+}
+
+
+- (void)THTransportError:(THTransport*)transport error:(NSError*)error {
+	THLogWarningMessage(@"transport %@ had an error", transport.identifier);
 }
 
 @end

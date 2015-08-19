@@ -10,6 +10,8 @@
 	<string>telehash</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>1C75F1C5CFCB95B3702F6F632FA05ED5244B519E</key>
+		<string>https://github.com/robbiehanson/CocoaAsyncSocket.git</string>
 		<key>67EBCDBBD4CFC0441D68D6AF5F100A0D6FF69B1A</key>
 		<string>https://github.com/ekscrypto/Base32.git</string>
 		<key>8B1F7173A1199AD19B4AC31DEF27AFBDFE9C8457</key>
@@ -19,6 +21,8 @@
 	<string>telehash.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>1C75F1C5CFCB95B3702F6F632FA05ED5244B519E</key>
+		<string>../../externals/CocoaAsyncSocket/</string>
 		<key>67EBCDBBD4CFC0441D68D6AF5F100A0D6FF69B1A</key>
 		<string>../..externals/Base32</string>
 		<key>8B1F7173A1199AD19B4AC31DEF27AFBDFE9C8457</key>
@@ -39,6 +43,14 @@
 			<string>67EBCDBBD4CFC0441D68D6AF5F100A0D6FF69B1A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Base32</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1C75F1C5CFCB95B3702F6F632FA05ED5244B519E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CocoaAsyncSocket</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

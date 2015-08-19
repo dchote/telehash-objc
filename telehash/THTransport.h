@@ -7,11 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GCDAsyncUdpSocket.h"
 
 #import "THLog.h"
 
+@class THTransport;
 
-@interface THTransport : NSObject
+@protocol THTransportDelegate <NSObject>
+- (void)THTransportReady:(THTransport*)transport;
+- (void)THTransportError:(THTransport*)transport error:(NSError*)error;
+@end;
+
+
+@interface THTransport : NSObject <GCDAsyncUdpSocketDelegate>
 
 @property BOOL active;
 @property NSString* identifier;

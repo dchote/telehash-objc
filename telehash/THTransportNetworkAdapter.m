@@ -8,7 +8,17 @@
 
 #import "THTransportNetworkAdapter.h"
 
-@implementation THTransportNetworkAdapter
+@implementation THTransportNetworkAdapter {
+	GCDAsyncUdpSocket* udpSocket;
+}
+
+- (id)init {
+	if (self) {
+		udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+	}
+	
+	return self;
+}
 
 - (BOOL)hasIPAddress {
 	if (self.IPv4Address || self.IPv6Address) {
@@ -43,6 +53,52 @@
 	}
 	
 	return [NSDictionary dictionaryWithDictionary:description];
+}
+
+
+- (void)bindToPort:(uint16_t)port {
+	if (!self.active) {
+		return;
+	}
+	
+	NSError* bindError;
+	[udpSocket bindToPort:port interface:self.identifier error:&bindError];
+	
+	if (bindError != nil) {
+		THLogErrorTHessage(@"error binding udpSocket %@ %@", self.identifier, [bindError description]);
+		
+		if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
+			[self.delegate THTransportError:self error:bindError];
+		}
+	}
+	
+	
+	NSError* listenError;
+	[udpSocket beginReceiving:&listenError];
+	
+	if (listenError != nil) {
+		THLogErrorTHessage(@"udpSocket %@ had error %@", self.identifier, [listenError description]);
+		
+		if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
+			[self.delegate THTransportError:self error:listenError];
+		}
+	} else {
+		THLogInfoMessage(@"udpSocket %@ now listening on port %d", self.identifier, udpSocket.localPort);
+	}
+}
+
+
+
+
+
+
+
+-(void)udpSocket:(GCDAsyncUdpSocket*)sock didReceiveData:(NSData*)data fromAddress:(NSData*)address withFilterContext:(id)filterContext {
+	
+}
+
+-(void)udpSocket:(GCDAsyncUdpSocket*)sock didSendDataWithTag:(long)tag {
+	
 }
 
 @end

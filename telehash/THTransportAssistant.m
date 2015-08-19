@@ -111,7 +111,7 @@ NSString* const THTransportStateChangedNotification = @"THTransportStateChangedN
 			if (!suppressNotifications && wasActive != networkAdapter.active) {
 				[[NSNotificationCenter defaultCenter] postNotificationName:THTransportStateChangedNotification
 																	object:networkAdapter
-																  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"wasActove", [NSNumber numberWithInt:wasActive], @"active", [NSNumber numberWithInt:networkAdapter.active], nil]];
+																  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"wasActive", [NSNumber numberWithInt:wasActive], @"active", [NSNumber numberWithInt:networkAdapter.active], nil]];
 			}
 			
 			[self.allTransports setObject:networkAdapter forKey:identifier];

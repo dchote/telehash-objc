@@ -22,6 +22,7 @@
 	
 	THMeshConfiguration* config = [[THMeshConfiguration alloc] init];
 	//config.enabledTransportIDs = [NSArray arrayWithObjects:@"en0", @"en1", nil];
+	config.listenPort = 42424;
 	
 	mesh = [THMesh initWithConfig:config];
 	
@@ -35,12 +36,14 @@
 	}
 }
 
-- (void)ready {
+- (void)THMeshReady:(THMesh*)mesh {
 	THLogInfoMessage(@"Mesh is ready");
 }
 
-- (void)error:(NSError*)error {
+
+- (void)THMeshError:(THMesh*)mesh error:(NSError*)error {
 	
 }
+
 
 @end

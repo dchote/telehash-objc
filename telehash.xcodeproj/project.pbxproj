@@ -16,6 +16,10 @@
 		657D86801B7FA81F009282BE /* THTransportNetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D867E1B7FA81F009282BE /* THTransportNetworkAdapter.m */; };
 		657D86831B7FA8C8009282BE /* THMeshConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 657D86811B7FA8C8009282BE /* THMeshConfiguration.h */; };
 		657D86841B7FA8C8009282BE /* THMeshConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D86821B7FA8C8009282BE /* THMeshConfiguration.m */; };
+		657D868C1B84073D009282BE /* GCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 657D86881B84073D009282BE /* GCDAsyncSocket.h */; };
+		657D868D1B84073D009282BE /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D86891B84073D009282BE /* GCDAsyncSocket.m */; };
+		657D868E1B84073D009282BE /* GCDAsyncUdpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 657D868A1B84073D009282BE /* GCDAsyncUdpSocket.h */; };
+		657D868F1B84073D009282BE /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D868B1B84073D009282BE /* GCDAsyncUdpSocket.m */; };
 		65A53B9D1B7D160D00150176 /* THMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 65A53B9B1B7D160D00150176 /* THMesh.h */; };
 		65A53B9E1B7D160D00150176 /* THMesh.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A53B9C1B7D160D00150176 /* THMesh.m */; };
 		65A53BA11B7D164600150176 /* THTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 65A53B9F1B7D164600150176 /* THTransport.h */; };
@@ -98,6 +102,10 @@
 		657D867E1B7FA81F009282BE /* THTransportNetworkAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTransportNetworkAdapter.m; sourceTree = "<group>"; };
 		657D86811B7FA8C8009282BE /* THMeshConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMeshConfiguration.h; sourceTree = "<group>"; };
 		657D86821B7FA8C8009282BE /* THMeshConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMeshConfiguration.m; sourceTree = "<group>"; };
+		657D86881B84073D009282BE /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = externals/CocoaAsyncSocket/Source/GCD/GCDAsyncSocket.h; sourceTree = SOURCE_ROOT; };
+		657D86891B84073D009282BE /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = externals/CocoaAsyncSocket/Source/GCD/GCDAsyncSocket.m; sourceTree = SOURCE_ROOT; };
+		657D868A1B84073D009282BE /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncUdpSocket.h; path = externals/CocoaAsyncSocket/Source/GCD/GCDAsyncUdpSocket.h; sourceTree = SOURCE_ROOT; };
+		657D868B1B84073D009282BE /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncUdpSocket.m; path = externals/CocoaAsyncSocket/Source/GCD/GCDAsyncUdpSocket.m; sourceTree = SOURCE_ROOT; };
 		65A53B9B1B7D160D00150176 /* THMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMesh.h; sourceTree = "<group>"; };
 		65A53B9C1B7D160D00150176 /* THMesh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMesh.m; sourceTree = "<group>"; };
 		65A53B9F1B7D164600150176 /* THTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTransport.h; sourceTree = "<group>"; };
@@ -388,6 +396,10 @@
 			children = (
 				65FC87791B7D751F00F18B12 /* MF_Base32Additions.h */,
 				65FC877A1B7D751F00F18B12 /* MF_Base32Additions.m */,
+				657D86881B84073D009282BE /* GCDAsyncSocket.h */,
+				657D86891B84073D009282BE /* GCDAsyncSocket.m */,
+				657D868A1B84073D009282BE /* GCDAsyncUdpSocket.h */,
+				657D868B1B84073D009282BE /* GCDAsyncUdpSocket.m */,
 			);
 			name = Externals;
 			sourceTree = "<group>";
@@ -411,7 +423,9 @@
 				65A53BB51B7D176000150176 /* THPacket.h in Headers */,
 				65A53BED1B7D1CBF00150176 /* E3X-cs3a.h in Headers */,
 				65A53BA11B7D164600150176 /* THTransport.h in Headers */,
+				657D868C1B84073D009282BE /* GCDAsyncSocket.h in Headers */,
 				657D86771B7FA63E009282BE /* THEndpoint.h in Headers */,
+				657D868E1B84073D009282BE /* GCDAsyncUdpSocket.h in Headers */,
 				65A53BF91B7D1E6700150176 /* THPipe.h in Headers */,
 				65A53BE81B7D1C8900150176 /* E3X.h in Headers */,
 				657D86831B7FA8C8009282BE /* THMeshConfiguration.h in Headers */,
@@ -601,6 +615,8 @@
 				65A53BF21B7D1D6B00150176 /* E3X-cs2a.m in Sources */,
 				657D86841B7FA8C8009282BE /* THMeshConfiguration.m in Sources */,
 				657D86801B7FA81F009282BE /* THTransportNetworkAdapter.m in Sources */,
+				657D868F1B84073D009282BE /* GCDAsyncUdpSocket.m in Sources */,
+				657D868D1B84073D009282BE /* GCDAsyncSocket.m in Sources */,
 				65FC876D1B7D743D00F18B12 /* THTransportSerial.m in Sources */,
 				65A53B9E1B7D160D00150176 /* THMesh.m in Sources */,
 				65A53BEE1B7D1CBF00150176 /* E3X-cs3a.m in Sources */,

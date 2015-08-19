@@ -12,6 +12,7 @@
 
 - (id)init {
 	if (self) {
+		self.listenPort = 0;
 		self.enabledTransportIDs = nil;
 	}
 	

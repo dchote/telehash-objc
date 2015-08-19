@@ -10,6 +10,7 @@
 
 @interface THMeshConfiguration : NSObject
 
+@property uint16_t listenPort;
 @property NSArray* enabledTransportIDs;
 
 @end

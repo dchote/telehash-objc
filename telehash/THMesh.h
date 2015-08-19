@@ -12,16 +12,19 @@
 #import "THMeshConfiguration.h"
 #import "THTransportAssistant.h"
 
+@class THMesh;
 
 @protocol THMeshDelegate <NSObject>
-- (void)ready;
-- (void)error:(NSError*)error;
+- (void)THMeshReady:(THMesh*)mesh;
+- (void)THMeshError:(THMesh*)mesh error:(NSError*)error;
 @end;
 
 
 
 
-@interface THMesh : NSObject
+@interface THMesh : NSObject <THTransportDelegate>
+
+@property id delegate;
 
 @property THMeshConfiguration* config;
 @property THTransportAssistant* transportAssistant;
