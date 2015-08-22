@@ -14,6 +14,13 @@
 
 @class THMesh;
 
+typedef enum {
+	THMeshStatusStartup,
+	THMeshStatusReady,
+	THMeshStatusError
+} THMeshStatus;
+
+
 @protocol THMeshDelegate <NSObject>
 - (void)THMeshReady:(THMesh*)mesh;
 - (void)THMeshError:(THMesh*)mesh error:(NSError*)error;
@@ -25,12 +32,13 @@
 @interface THMesh : NSObject <THTransportDelegate>
 
 @property id delegate;
+@property THMeshStatus status;
+
 
 @property THMeshConfiguration* config;
 @property THTransportAssistant* transportAssistant;
 @property NSMutableArray* transports;
 
-+ (id)initWithConfig:(THMeshConfiguration*)config;
 - (void)bootstrapWithConfig:(THMeshConfiguration*)config;
 - (void)shutdown;
 @end

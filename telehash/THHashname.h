@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "THLog.h"
+
+
 @interface THHashname : NSObject
 
 @end

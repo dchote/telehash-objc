@@ -7,9 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ORSSerialPort.h"
+
+#import "THLog.h"
 #import "THTransport.h"
 
 
-@interface THTransportSerial : NSObject
+@interface THTransportSerial : THTransport <ORSSerialPortDelegate>
 
+@property NSArray* availableBaudRates;
+
+- (void)setSerialPort:(ORSSerialPort*)port;
+- (void)setBaudRate:(NSNumber*)baudRate;
+- (void)openSerialPort;
+- (void)closeSerialPort;
 @end

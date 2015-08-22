@@ -11,6 +11,10 @@
 
 #import "THLog.h"
 
+extern NSInteger const THTransportInitDelay;
+extern NSInteger const THTransportTimeout;
+
+
 @class THTransport;
 
 @protocol THTransportDelegate <NSObject>
@@ -19,7 +23,7 @@
 @end;
 
 
-@interface THTransport : NSObject <GCDAsyncUdpSocketDelegate>
+@interface THTransport : NSObject
 
 @property id delegate;
 
@@ -30,5 +34,6 @@
 @property int MTU;
 
 
+- (void)shutdown;
 - (NSDictionary*)description;
 @end

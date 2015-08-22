@@ -10,7 +10,9 @@
 
 @interface THMeshConfiguration : NSObject
 
-@property uint16_t listenPort;
 @property NSArray* enabledTransportIDs;
+
+@property uint16_t networkListenPort;
+@property NSDictionary* serialBaudRates;
 
 @end

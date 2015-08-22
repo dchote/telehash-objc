@@ -4,3 +4,9 @@
 [submodule "externals/CocoaAsyncSocket"]
 	path = externals/CocoaAsyncSocket
 	url = https://github.com/robbiehanson/CocoaAsyncSocket.git
+[submodule "externals/ORSSerialPort"]
+	path = externals/ORSSerialPort
+	url = https://github.com/armadsen/ORSSerialPort.git
+[submodule "externals/libsodium"]
+	path = externals/libsodium
+	url = https://github.com/jedisct1/libsodium.git

@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#import "THLog.h"
+#import "THHashname.h"
+#import "THLink.h"
+
 @interface THEndpoint : NSObject
+
+@property THHashname* localHashname;
+@property THHashname* remoteHashname;
+
+@property THLink* link;
+@property NSMutableArray* pipes;
 
 @end

@@ -11,6 +11,9 @@
 #import "THTransportSerial.h"
 #import "THTransportMultipeerConnectivity.h"
 
+NSInteger const THTransportInitDelay = 1;
+NSInteger const THTransportTimeout = 30;
+
 @implementation THTransport
 
 - (id)init {
@@ -20,6 +23,10 @@
 	}
 	
 	return self;
+}
+
+- (void)shutdown {
+	THLogErrorTHessage(@"class did not implement shutdown method");
 }
 
 - (NSDictionary*)description {

@@ -12,8 +12,9 @@
 
 - (id)init {
 	if (self) {
-		self.listenPort = 0;
 		self.enabledTransportIDs = nil;
+		self.networkListenPort = 0;
+		self.serialBaudRates = [NSDictionary dictionary];
 	}
 	
 	return self;

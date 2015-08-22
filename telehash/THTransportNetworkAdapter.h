@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#import "THLog.h"
 #import "THTransport.h"
 
-@interface THTransportNetworkAdapter : THTransport
+@interface THTransportNetworkAdapter : THTransport <GCDAsyncUdpSocketDelegate>
 
 @property NSString* interfaceType;
 

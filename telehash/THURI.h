@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "THLog.h"
+
 @interface THURI : NSObject
 
 @end

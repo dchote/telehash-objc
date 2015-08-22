@@ -12,8 +12,12 @@
 	<dict>
 		<key>1C75F1C5CFCB95B3702F6F632FA05ED5244B519E</key>
 		<string>https://github.com/robbiehanson/CocoaAsyncSocket.git</string>
+		<key>5A811E91F5DFF59170683E14D2C5755F19DE18CB</key>
+		<string>https://github.com/armadsen/ORSSerialPort.git</string>
 		<key>67EBCDBBD4CFC0441D68D6AF5F100A0D6FF69B1A</key>
 		<string>https://github.com/ekscrypto/Base32.git</string>
+		<key>81A28796384A028E6C2D47C039DB8B3E5DD6D0FC</key>
+		<string>https://github.com/jedisct1/libsodium.git</string>
 		<key>8B1F7173A1199AD19B4AC31DEF27AFBDFE9C8457</key>
 		<string>https://github.com/dchote/telehash-objc.git</string>
 	</dict>
@@ -22,9 +26,13 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>1C75F1C5CFCB95B3702F6F632FA05ED5244B519E</key>
-		<string>../../externals/CocoaAsyncSocket/</string>
+		<string>../..externals/CocoaAsyncSocket/</string>
+		<key>5A811E91F5DFF59170683E14D2C5755F19DE18CB</key>
+		<string>../..externals/ORSSerialPort/</string>
 		<key>67EBCDBBD4CFC0441D68D6AF5F100A0D6FF69B1A</key>
-		<string>../..externals/Base32</string>
+		<string>../..externals/Base32/</string>
+		<key>81A28796384A028E6C2D47C039DB8B3E5DD6D0FC</key>
+		<string>../..externals/libsodium/</string>
 		<key>8B1F7173A1199AD19B4AC31DEF27AFBDFE9C8457</key>
 		<string>../..</string>
 	</dict>
@@ -51,6 +59,22 @@
 			<string>1C75F1C5CFCB95B3702F6F632FA05ED5244B519E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>CocoaAsyncSocket</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>81A28796384A028E6C2D47C039DB8B3E5DD6D0FC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>libsodium</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5A811E91F5DFF59170683E14D2C5755F19DE18CB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ORSSerialPort</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

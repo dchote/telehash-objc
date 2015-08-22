@@ -9,6 +9,7 @@
 #import "THTransportAssistant.h"
 #include "TargetConditionals.h"
 
+
 #import <ifaddrs.h>
 #import <sys/socket.h>
 #import <arpa/inet.h>
@@ -34,6 +35,7 @@ NSString* const THTransportStateChangedNotification = @"THTransportStateChangedN
 
 
 - (NSArray*)getAllTransports {
+	THLogMethodCall
 	
 	BOOL suppressNotifications; // only fire notifications when we already know about the transport
 
@@ -114,7 +116,7 @@ NSString* const THTransportStateChangedNotification = @"THTransportStateChangedN
 																  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"wasActive", [NSNumber numberWithInt:wasActive], @"active", [NSNumber numberWithInt:networkAdapter.active], nil]];
 			}
 			
-			[self.allTransports setObject:networkAdapter forKey:identifier];
+			[self.allTransports setObject:networkAdapter forKey:networkAdapter.identifier];
 
 			temp_addr = temp_addr->ifa_next;
 		}
@@ -147,7 +149,7 @@ NSString* const THTransportStateChangedNotification = @"THTransportStateChangedN
 					networkAdapter.MTU = cur;
 				}
 			
-				[self.allTransports setObject:networkAdapter forKey:identifier];
+				[self.allTransports setObject:networkAdapter forKey:networkAdapter.identifier];
 			} else {
 				THLogDebugMessage(@"Interface %@ found via SCNetworkInterface but not getifaddrs(), ignoring...", identifier);
 			}
@@ -157,8 +159,20 @@ NSString* const THTransportStateChangedNotification = @"THTransportStateChangedN
 #endif
 	
 	// Serial Ports
+	ORSSerialPortManager* serialPortManager = [ORSSerialPortManager sharedSerialPortManager];
+	for (ORSSerialPort* port in serialPortManager.availablePorts) {
+		THTransportSerial* serialPort = [[THTransportSerial alloc] init];
+		serialPort.identifier = port.path;
+		serialPort.name = port.name;
+		[serialPort setSerialPort:port];
+		
+		[self.allTransports setObject:serialPort forKey:serialPort.identifier];
+	}
+	
 	
 	// Multipeer Connectivity
+	// TODO - More research needed in to how to structure this
+	
 	
 	return [self.allTransports allValues];
 }

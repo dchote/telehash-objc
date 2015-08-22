@@ -7,25 +7,37 @@
 //
 
 #import "AppDelegate.h"
+#import "DebugController.h"
 
-@interface AppDelegate ()
-
-@property (weak) IBOutlet NSWindow *window;
-@end
-
-@implementation AppDelegate
+@implementation AppDelegate {
+	DebugController* debugController;
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	logger = [[THLog alloc] initWithLoggedEventTypes:[NSArray arrayWithObject:THLAllEvents] classNames:[NSArray arrayWithObject:THLAllClasses]];
+	THLogMethodCall
 	
+	logger = [[THLog alloc] initWithLoggedEventTypes:[NSArray arrayWithObject:THLAllEvents] classNames:[NSArray arrayWithObject:THLAllClasses]];
+	debugController = [DebugController sharedController];
+
 	THLogInfoMessage(@"We are starting up");
 	
-	THMeshConfiguration* config = [[THMeshConfiguration alloc] init];
-	//config.enabledTransportIDs = [NSArray arrayWithObjects:@"en0", @"en1", nil];
-	config.listenPort = 42424;
 	
-	mesh = [THMesh initWithConfig:config];
+	THMeshConfiguration* config = [[THMeshConfiguration alloc] init];
+	// Only enable certain transports
+	// config.enabledTransportIDs = [NSArray arrayWithObjects:@"en0", @"en1", nil];
+	
+	// network listen port (udp/tcp*)
+	config.networkListenPort = 42424;
+	
+	// serial port X at baud rate Y
+	//[config.serialBaudRates setValue:@11500 forKey:@"/dev/ttyS0"];
+	
+	
+	
+	mesh = [[THMesh alloc] init];
 	mesh.delegate = self;
+	
+	[mesh bootstrapWithConfig:config];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -35,7 +47,8 @@
 }
 
 - (void)THMeshReady:(THMesh*)mesh {
-	THLogInfoMessage(@"Mesh is ready");
+	THLogInfoMessage(@"Mesh is ready...");
+	[debugController showWindow:self];
 }
 
 

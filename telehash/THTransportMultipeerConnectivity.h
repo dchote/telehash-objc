@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "THTransport.h"
 
-@interface THTransportMultipeerConnectivity : NSObject
+@interface THTransportMultipeerConnectivity : THTransport
 
 @end

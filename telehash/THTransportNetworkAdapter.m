@@ -57,7 +57,10 @@
 
 
 - (void)bindToPort:(uint16_t)port {
+	THLogMethodCall
+	
 	if (!self.active) {
+		THLogNoticeMessage(@"transport %@ is inactive, not binding...", self.identifier);
 		return;
 	}
 	
@@ -84,20 +87,49 @@
 		}
 	} else {
 		THLogInfoMessage(@"udpSocket %@ now listening on port %d", self.identifier, udpSocket.localPort);
+		
+		if ([self.delegate respondsToSelector:@selector(THTransportReady:)]) {
+			[self.delegate performSelector:@selector(THTransportReady:) withObject:self afterDelay:THTransportInitDelay];
+		}
 	}
 }
 
+- (void)shutdown {
+	THLogMethodCall
+	
+	[udpSocket closeAfterSending];
+}
 
 
 
 
 
-
--(void)udpSocket:(GCDAsyncUdpSocket*)sock didReceiveData:(NSData*)data fromAddress:(NSData*)address withFilterContext:(id)filterContext {
+- (void)udpSocket:(GCDAsyncUdpSocket*)sock didConnectToAddress:(NSData*)address {
 	
 }
 
--(void)udpSocket:(GCDAsyncUdpSocket*)sock didSendDataWithTag:(long)tag {
+
+- (void)udpSocket:(GCDAsyncUdpSocket*)sock didNotConnect:(NSError*)error {
+	
+}
+
+
+- (void)udpSocket:(GCDAsyncUdpSocket*)sock didSendDataWithTag:(long)tag {
+	
+}
+
+
+- (void)udpSocket:(GCDAsyncUdpSocket*)sock didNotSendDataWithTag:(long)tag dueToError:(NSError*)error {
+	
+}
+
+
+- (void)udpSocket:(GCDAsyncUdpSocket*)sock didReceiveData:(NSData*)data fromAddress:(NSData*)address withFilterContext:(id)filterContext {
+	
+}
+
+
+- (void)udpSocketDidClose:(GCDAsyncUdpSocket*)sock withError:(NSError*)error {
 	
 }
 

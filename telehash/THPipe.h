@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "THLog.h"
+#import "THLink.h"
+#import "THTransport.h"
+
 @interface THPipe : NSObject
+
+@property (weak) THLink* link;
+@property (weak) THTransport* transport;
 
 @end

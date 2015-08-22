@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "THLog.h"
+
 @interface THLink : NSObject
 
 @end

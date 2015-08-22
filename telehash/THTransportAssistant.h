@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
+#import "ORSSerialPortManager.h"
 
+#import "THLog.h"
 #import "THTransport.h"
 #import "THTransportNetworkAdapter.h"
-//#import "THTransportSerial.h"
-//#import "THTransportMultipeerConnectivity.h"
+#import "THTransportSerial.h"
+#import "THTransportMultipeerConnectivity.h"
 
 extern NSString* const THTransportStateRefreshRequest;
 extern NSString* const THTransportStateChangedNotification;
