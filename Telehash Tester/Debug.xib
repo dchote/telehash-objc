@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DebugController">
             <connections>
+                <outlet property="interfaceList" destination="whk-x3-6zy" id="KW9-hr-OFY"/>
+                <outlet property="packetLog" destination="Mnn-eZ-mZD" id="I8u-bu-Caf"/>
+                <outlet property="peerList" destination="86y-OO-BNc" id="hH9-dt-nPC"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -16,7 +19,7 @@
             <rect key="contentRect" x="1011" y="566" width="646" height="435"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1577"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="-1" width="646" height="435"/>
+                <rect key="frame" x="0.0" y="0.0" width="646" height="435"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <splitView dividerStyle="paneSplitter" vertical="YES" id="egz-WT-Q32">
@@ -116,6 +119,10 @@
                                                                             </prototypeCellViews>
                                                                         </tableColumn>
                                                                     </tableColumns>
+                                                                    <connections>
+                                                                        <outlet property="dataSource" destination="-2" id="wkC-4E-K56"/>
+                                                                        <outlet property="delegate" destination="-2" id="crs-VW-lRu"/>
+                                                                    </connections>
                                                                 </outlineView>
                                                             </subviews>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -220,6 +227,10 @@
                                                                             </prototypeCellViews>
                                                                         </tableColumn>
                                                                     </tableColumns>
+                                                                    <connections>
+                                                                        <outlet property="dataSource" destination="-2" id="IJZ-vF-fbQ"/>
+                                                                        <outlet property="delegate" destination="-2" id="l70-Dt-ivp"/>
+                                                                    </connections>
                                                                 </outlineView>
                                                             </subviews>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -259,7 +270,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="jgV-QU-4Iw" viewBased="YES" id="Mnn-eZ-mZD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="246" height="0.0"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="246" height="417"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -332,6 +343,10 @@
                                                             </prototypeCellViews>
                                                         </tableColumn>
                                                     </tableColumns>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="-2" id="xmu-WP-0zs"/>
+                                                        <outlet property="delegate" destination="-2" id="f0a-Qh-TrN"/>
+                                                    </connections>
                                                 </tableView>
                                             </subviews>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -359,10 +374,21 @@
                     </splitView>
                 </subviews>
             </view>
+            <toolbar key="toolbar" implicitIdentifier="4ED818BA-A2E9-48FE-BB25-FA20B02E0FDC" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="bes-D3-4pA">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="94BCDE6C-22B5-42A6-A843-2E21DE637925" label="Connect" paletteLabel="Connect" tag="-1" image="NSNetwork" id="qt1-dN-NcJ"/>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="qt1-dN-NcJ"/>
+                </defaultToolbarItems>
+            </toolbar>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
             <point key="canvasLocation" x="539" y="424.5"/>
         </window>
     </objects>
+    <resources>
+        <image name="NSNetwork" width="32" height="32"/>
+    </resources>
 </document>

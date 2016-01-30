@@ -29,7 +29,7 @@ NSInteger const THTransportTimeout = 30;
 	THLogErrorTHessage(@"class did not implement shutdown method");
 }
 
-- (NSDictionary*)description {
+- (NSDictionary *)description {
 	NSMutableDictionary* description = [NSMutableDictionary dictionary];
 	
 	[description setObject:[NSNumber numberWithInt:self.active] forKey:@"active"];

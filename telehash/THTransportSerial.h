@@ -17,8 +17,8 @@
 
 @property NSArray* availableBaudRates;
 
-- (void)setSerialPort:(ORSSerialPort*)port;
-- (void)setBaudRate:(NSNumber*)baudRate;
+- (void)setSerialPort:(ORSSerialPort *)port;
+- (void)setBaudRate:(NSNumber *)baudRate;
 - (void)openSerialPort;
 - (void)closeSerialPort;
 @end

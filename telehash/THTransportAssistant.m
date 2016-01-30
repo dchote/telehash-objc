@@ -34,7 +34,7 @@ NSString* const THTransportStateChangedNotification = @"THTransportStateChangedN
 
 
 
-- (NSArray*)getAllTransports {
+- (NSArray *)getAllTransports {
 	THLogMethodCall
 	
 	BOOL suppressNotifications; // only fire notifications when we already know about the transport
@@ -159,11 +159,14 @@ NSString* const THTransportStateChangedNotification = @"THTransportStateChangedN
 #endif
 	
 	// Serial Ports
+	// TODO, should I use IOBluetoothRFCOMM specifically for bluetooth, as it has (BluetoothRFCOMMMTU)getMTU
+	
 	ORSSerialPortManager* serialPortManager = [ORSSerialPortManager sharedSerialPortManager];
 	for (ORSSerialPort* port in serialPortManager.availablePorts) {
 		THTransportSerial* serialPort = [[THTransportSerial alloc] init];
 		serialPort.identifier = port.path;
 		serialPort.name = port.name;
+		serialPort.MTU = 256;
 		[serialPort setSerialPort:port];
 		
 		[self.allTransports setObject:serialPort forKey:serialPort.identifier];

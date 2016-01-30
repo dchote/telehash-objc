@@ -49,7 +49,7 @@ NSString* const THLAllClasses = @"THLAllClasses";
 	return self;
 }
 
-- (id)initWithLoggedEventTypes:(NSArray*)eventTypes {
+- (id)initWithLoggedEventTypes:(NSArray *)eventTypes {
 	self = [self init];
 	
 	self.eventTypes = eventTypes;
@@ -57,7 +57,7 @@ NSString* const THLAllClasses = @"THLAllClasses";
 	return self;
 }
 
-- (id)initWithLoggedEventTypes:(NSArray*)eventTypes classNames:(NSArray*)classNames {
+- (id)initWithLoggedEventTypes:(NSArray *)eventTypes classNames:(NSArray *)classNames {
 	self = [self initWithLoggedEventTypes:eventTypes];
 	
 	self.classNames = classNames;
@@ -71,18 +71,18 @@ NSString* const THLAllClasses = @"THLAllClasses";
 	asl_close(logClient);
 }
 
-- (BOOL)shouldLogClassName:(NSString*)className {
+- (BOOL)shouldLogClassName:(NSString *)className {
 	return ([self.classNames containsObject:THLAllClasses] || [self.classNames containsObject:className]);
 }
 
-- (BOOL)shouldLogEventType:(NSString*)eventType {
+- (BOOL)shouldLogEventType:(NSString *)eventType {
 	return ([self.eventTypes containsObject:THLAllEvents] || [self.eventTypes containsObject:eventType]);
 }
 
 
-- (void)handleNotification:(NSNotification*)notification {
-	NSString *name = [notification name];
-	NSString *className = [[notification object] className];
+- (void)handleNotification:(NSNotification *)aNotification {
+	NSString *name = [aNotification name];
+	NSString *className = [[aNotification object] className];
 	
 	BOOL shouldLog = NO;
 	
@@ -106,11 +106,11 @@ NSString* const THLAllClasses = @"THLAllClasses";
 			logLevel = ASL_LEVEL_INFO;
 		}
 		
-		NSDictionary *eventInfo = [notification userInfo];
+		NSDictionary *eventInfo = [aNotification userInfo];
 		NSMutableString *message = [[NSMutableString alloc] init];
 		
 		if (eventInfo) {
-			[message appendString:[[notification object] className]];
+			[message appendString:[[aNotification object] className]];
 			
 			if ([eventInfo objectForKey:THLEventLoggedMethodName]) {
 				[message appendString:[NSString stringWithFormat:@" %@", [eventInfo objectForKey:THLEventLoggedMethodName]]];

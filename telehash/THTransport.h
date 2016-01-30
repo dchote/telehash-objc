@@ -18,8 +18,8 @@ extern NSInteger const THTransportTimeout;
 @class THTransport;
 
 @protocol THTransportDelegate <NSObject>
-- (void)THTransportReady:(THTransport*)transport;
-- (void)THTransportError:(THTransport*)transport error:(NSError*)error;
+- (void)THTransportReady:(THTransport *)transport;
+- (void)THTransportError:(THTransport *)transport error:(NSError *)error;
 @end;
 
 
@@ -35,5 +35,5 @@ extern NSInteger const THTransportTimeout;
 
 
 - (void)shutdown;
-- (NSDictionary*)description;
+- (NSDictionary *)description;
 @end

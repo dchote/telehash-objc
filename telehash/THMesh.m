@@ -22,7 +22,7 @@
 }
 
 
-- (void)bootstrapWithConfig:(THMeshConfiguration*)config {
+- (void)bootstrapWithConfig:(THMeshConfiguration *)config {
 	THLogMethodCall
 	
 	self.config = config;
@@ -67,7 +67,7 @@
 
 
 
-- (void)THTransportReady:(THTransport*)transport {
+- (void)THTransportReady:(THTransport *)transport {
 	THLogInfoMessage(@"transport %@ is now ready", transport.identifier);
 	
 	if (self.status == THMeshStatusStartup) {
@@ -83,7 +83,7 @@
 }
 
 
-- (void)THTransportError:(THTransport*)transport error:(NSError*)error {
+- (void)THTransportError:(THTransport *)transport error:(NSError *)error {
 	THLogWarningMessage(@"transport %@ had an error", transport.identifier);
 	
 	// TODO determine all transports down to set self.status = THMeshStatusError

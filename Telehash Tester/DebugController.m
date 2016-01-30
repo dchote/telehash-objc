@@ -14,7 +14,7 @@
 
 @implementation DebugController
 
-+ (DebugController*)sharedController
++ (DebugController *)sharedController
 {
 	static DebugController *sharedDebugControllerInstance = nil;
 	
@@ -45,6 +45,42 @@
 	THLogMethodCall
 	
 	
+}
+
+
+
+
+#pragma -
+#pragma mark OutlineView Delegation
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+{
+	return 0;
+}
+
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
+{
+	return nil;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
+{
+	return NO;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+{
+	return item;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
+	return NO;
+}
+
+- (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
+{
+	return [outlineView makeViewWithIdentifier:[tableColumn identifier] owner:self];
 }
 
 @end

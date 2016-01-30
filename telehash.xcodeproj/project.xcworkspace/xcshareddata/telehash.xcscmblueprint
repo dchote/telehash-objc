@@ -1,0 +1,51 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8B1F7173A1199AD19B4AC31DEF27AFBDFE9C8457",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "67EBCDBBD4CFC0441D68D6AF5F100A0D6FF69B1A" : 0,
+    "1C75F1C5CFCB95B3702F6F632FA05ED5244B519E" : 0,
+    "5A811E91F5DFF59170683E14D2C5755F19DE18CB" : 0,
+    "81A28796384A028E6C2D47C039DB8B3E5DD6D0FC" : 0,
+    "8B1F7173A1199AD19B4AC31DEF27AFBDFE9C8457" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "42EC0020-6D1C-4E0E-9BA1-1F6CDBEA68F6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "67EBCDBBD4CFC0441D68D6AF5F100A0D6FF69B1A" : "telehash-objc\/externals\/Base32\/",
+    "1C75F1C5CFCB95B3702F6F632FA05ED5244B519E" : "telehash-objc\/externals\/CocoaAsyncSocket\/",
+    "5A811E91F5DFF59170683E14D2C5755F19DE18CB" : "telehash-objc\/externals\/ORSSerialPort\/",
+    "81A28796384A028E6C2D47C039DB8B3E5DD6D0FC" : "telehash-objc\/externals\/libsodium\/",
+    "8B1F7173A1199AD19B4AC31DEF27AFBDFE9C8457" : "telehash-objc\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "telehash",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "telehash.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/robbiehanson\/CocoaAsyncSocket.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1C75F1C5CFCB95B3702F6F632FA05ED5244B519E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/armadsen\/ORSSerialPort.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5A811E91F5DFF59170683E14D2C5755F19DE18CB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ekscrypto\/Base32.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "67EBCDBBD4CFC0441D68D6AF5F100A0D6FF69B1A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jedisct1\/libsodium.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "81A28796384A028E6C2D47C039DB8B3E5DD6D0FC"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dchote\/telehash-objc.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8B1F7173A1199AD19B4AC31DEF27AFBDFE9C8457"
+    }
+  ]
+}

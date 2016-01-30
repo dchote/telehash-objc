@@ -9,9 +9,14 @@
 #import <Cocoa/Cocoa.h>
 #import "THLog.h"
 
-@interface DebugController : NSWindowController <NSWindowDelegate>
+@interface DebugController : NSWindowController <NSWindowDelegate> {
+    IBOutlet NSOutlineView* interfaceList;
+    IBOutlet NSOutlineView* peerList;
+    IBOutlet NSTableView* packetLog;
+}
 
 
-+ (DebugController*)sharedController;
++ (DebugController *)sharedController;
+
 
 @end

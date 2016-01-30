@@ -22,8 +22,8 @@ typedef enum {
 
 
 @protocol THMeshDelegate <NSObject>
-- (void)THMeshReady:(THMesh*)mesh;
-- (void)THMeshError:(THMesh*)mesh error:(NSError*)error;
+- (void)THMeshReady:(THMesh *)mesh;
+- (void)THMeshError:(THMesh *)mesh error:(NSError *)error;
 @end;
 
 
@@ -39,6 +39,6 @@ typedef enum {
 @property THTransportAssistant* transportAssistant;
 @property NSMutableArray* transports;
 
-- (void)bootstrapWithConfig:(THMeshConfiguration*)config;
+- (void)bootstrapWithConfig:(THMeshConfiguration *)config;
 - (void)shutdown;
 @end

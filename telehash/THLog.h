@@ -49,12 +49,12 @@ extern NSString* const THLAllClasses;
 #pragma mark -
 #pragma mark THEventLogger Methods
 
-- (id)initWithLoggedEventTypes:(NSArray*)eventTypes;
-- (id)initWithLoggedEventTypes:(NSArray*)eventTypes classNames:(NSArray*)classNames;
+- (id)initWithLoggedEventTypes:(NSArray *)eventTypes;
+- (id)initWithLoggedEventTypes:(NSArray *)eventTypes classNames:(NSArray *)classNames;
 
-- (BOOL)shouldLogClassName:(NSString*)className;
-- (BOOL)shouldLogEventType:(NSString*)eventType;
+- (BOOL)shouldLogClassName:(NSString *)className;
+- (BOOL)shouldLogEventType:(NSString *)eventType;
 
-- (void)handleNotification:(NSNotification*)notification;
+- (void)handleNotification:(NSNotification *)notification;
 
 @end

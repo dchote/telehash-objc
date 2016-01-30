@@ -13,6 +13,8 @@
 }
 
 - (id)init {
+	self = [super init];
+
 	if (self) {
 		udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
 	}
@@ -28,7 +30,7 @@
 	return NO;
 }
 
-- (NSDictionary*)description {
+- (NSDictionary *)description {
 	NSMutableDictionary* description = [NSMutableDictionary dictionaryWithDictionary:[super description]];
 	
 	if (self.interfaceType) {
@@ -104,32 +106,32 @@
 
 
 
-- (void)udpSocket:(GCDAsyncUdpSocket*)sock didConnectToAddress:(NSData*)address {
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didConnectToAddress:(NSData *)address {
 	
 }
 
 
-- (void)udpSocket:(GCDAsyncUdpSocket*)sock didNotConnect:(NSError*)error {
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotConnect:(NSError *)error {
 	
 }
 
 
-- (void)udpSocket:(GCDAsyncUdpSocket*)sock didSendDataWithTag:(long)tag {
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag {
 	
 }
 
 
-- (void)udpSocket:(GCDAsyncUdpSocket*)sock didNotSendDataWithTag:(long)tag dueToError:(NSError*)error {
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error {
 	
 }
 
 
-- (void)udpSocket:(GCDAsyncUdpSocket*)sock didReceiveData:(NSData*)data fromAddress:(NSData*)address withFilterContext:(id)filterContext {
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext {
 	
 }
 
 
-- (void)udpSocketDidClose:(GCDAsyncUdpSocket*)sock withError:(NSError*)error {
+- (void)udpSocketDidClose:(GCDAsyncUdpSocket *)sock withError:(NSError *)error {
 	
 }
 

@@ -23,7 +23,7 @@
 
 
 - (BOOL)hasIPAddress;
-- (NSDictionary*)description;
+- (NSDictionary *)description;
 - (void)bindToPort:(uint16_t)port;
 
 

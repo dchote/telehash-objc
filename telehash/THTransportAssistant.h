@@ -24,5 +24,5 @@ extern NSString* const THTransportStateChangedNotification;
 
 @property NSMutableDictionary* allTransports;
 
-- (NSArray*)getAllTransports;
+- (NSArray *)getAllTransports;
 @end

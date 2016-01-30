@@ -46,7 +46,7 @@
 	}
 }
 
-- (void)THMeshReady:(THMesh*)mesh {
+- (void)THMeshReady:(THMesh *)mesh {
 	THLogInfoMessage(@"Mesh is ready...");
 	[debugController showWindow:self];
 }
