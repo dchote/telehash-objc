@@ -94,6 +94,11 @@
 			[self.delegate performSelector:@selector(THTransportReady:) withObject:self afterDelay:THTransportInitDelay];
 		}
 	}
+	
+	self.addressDescription = [NSString stringWithFormat:@"ipv4:%@:%d", self.IPv4Address, udpSocket.localPort];
+	if (self.IPv6Address) {
+		self.addressDescription = [NSString stringWithFormat:@"%@ ipv6:%@:%d", self.addressDescription, self.IPv6Address, udpSocket.localPort];
+	}
 }
 
 - (void)shutdown {

@@ -15,6 +15,7 @@
 	if (self) {
 		self.transportAssistant = [[THTransportAssistant alloc] init];
 		self.transports = [NSMutableArray array];
+		self.activeTransports = [NSMutableArray array];
 		self.status = THMeshStatusStartup;
 	}
 	
@@ -70,6 +71,10 @@
 - (void)THTransportReady:(THTransport *)transport {
 	THLogInfoMessage(@"transport %@ is now ready", transport.identifier);
 	
+	if (![self.activeTransports containsObject:transport]) {
+		[self.activeTransports addObject:transport];
+	}
+	
 	if (self.status == THMeshStatusStartup) {
 		self.status = THMeshStatusReady;
 		
@@ -78,7 +83,8 @@
 		}
 	}
 	
-	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"meshStateChange" object:self userInfo:nil];
+
 	// TODO send router handshake
 }
 
@@ -90,6 +96,12 @@
 	
 	if ([self.delegate respondsToSelector:@selector(THMeshError:error:)]) {
 		[self.delegate THMeshError:self error:error];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"meshStateChange" object:self userInfo:nil];
+
+	}
+	
+	if ([self.activeTransports containsObject:transport]) {
+		[self.activeTransports removeObject:transport];
 	}
 }
 

@@ -30,6 +30,7 @@ extern NSInteger const THTransportTimeout;
 @property BOOL active;
 @property NSString* identifier;
 @property NSString* name;
+@property NSString* addressDescription;
 
 @property int MTU;
 

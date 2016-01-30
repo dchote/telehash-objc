@@ -38,16 +38,21 @@
 
 - (void)dealloc {
 	THLogMethodCall
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)windowDidLoad
 {
 	THLogMethodCall
 	
-	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshInterfaceList) name:@"meshStateChange" object:nil];
 }
 
-
+- (void)refreshInterfaceList
+{
+	[self.interfaceList reloadData];
+}
 
 
 #pragma -
@@ -55,12 +60,20 @@
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
+	if (outlineView == self.interfaceList) {
+		return self.mesh.activeTransports.count;
+	}
+	
 	return 0;
 }
 
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
+	if (outlineView == self.interfaceList) {
+		return [self.mesh.activeTransports objectAtIndex:index];
+	}
+	
 	return nil;
 }
 
@@ -78,9 +91,32 @@
 	return NO;
 }
 
+/*
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
 {
 	return [outlineView makeViewWithIdentifier:[tableColumn identifier] owner:self];
 }
+*/
 
+
+
+
+
+
+#pragma mark -
+#pragma mark Splitview Delegates
+
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedCoordinate ofSubviewAt:(int)index
+{
+	return proposedCoordinate + 200.0f;
+}
+
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedCoordinate ofSubviewAt:(int)index
+{
+	return proposedCoordinate - 200.0f;
+}
+
+- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
+	return NO;
+}
 @end

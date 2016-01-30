@@ -38,6 +38,8 @@ typedef enum {
 @property THMeshConfiguration* config;
 @property THTransportAssistant* transportAssistant;
 @property NSMutableArray* transports;
+@property NSMutableArray* activeTransports;
+
 
 - (void)bootstrapWithConfig:(THMeshConfiguration *)config;
 - (void)shutdown;

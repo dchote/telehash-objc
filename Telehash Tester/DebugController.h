@@ -8,15 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 #import "THLog.h"
+#import "THMesh.h"
 
-@interface DebugController : NSWindowController <NSWindowDelegate> {
-    IBOutlet NSOutlineView* interfaceList;
-    IBOutlet NSOutlineView* peerList;
-    IBOutlet NSTableView* packetLog;
-}
+@interface DebugController : NSWindowController <NSWindowDelegate>
+
+@property (weak) THMesh* mesh;
+
+@property IBOutlet NSSplitView* horizontalSplit;
+@property IBOutlet NSOutlineView* interfaceList;
+@property IBOutlet NSOutlineView* peerList;
+@property IBOutlet NSTableView* packetLog;
 
 
 + (DebugController *)sharedController;
 
+- (void)refreshInterfaceList;
 
 @end

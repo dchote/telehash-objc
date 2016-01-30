@@ -83,7 +83,6 @@ NSString* const THTransportStateChangedNotification = @"THTransportStateChangedN
 				inet_ntop(AF_INET, &((struct sockaddr_in*)temp_addr->ifa_netmask)->sin_addr, tmp, sizeof(tmp));
 				networkAdapter.IPv4Netmask = [NSString stringWithUTF8String:tmp];
 				
-				
 			} else if (temp_addr->ifa_addr->sa_family == AF_INET6) {
 				
 				inet_ntop(AF_INET6, &((struct sockaddr_in6*)temp_addr->ifa_addr)->sin6_addr, tmp, sizeof(tmp));

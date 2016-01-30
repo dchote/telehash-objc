@@ -18,7 +18,6 @@
 	
 	logger = [[THLog alloc] initWithLoggedEventTypes:[NSArray arrayWithObject:THLAllEvents] classNames:[NSArray arrayWithObject:THLAllClasses]];
 	debugController = [DebugController sharedController];
-
 	THLogInfoMessage(@"We are starting up");
 	
 	
@@ -27,7 +26,7 @@
 	// config.enabledTransportIDs = [NSArray arrayWithObjects:@"en0", @"en1", nil];
 	
 	// network listen port (udp/tcp*)
-	config.networkListenPort = 42424;
+	//config.networkListenPort = 42424;
 	
 	// serial port X at baud rate Y
 	//[config.serialBaudRates setValue:@11500 forKey:@"/dev/ttyS0"];
@@ -36,6 +35,9 @@
 	
 	mesh = [[THMesh alloc] init];
 	mesh.delegate = self;
+	
+	// weak assignment of mesh within debugController
+	debugController.mesh = mesh;
 	
 	[mesh bootstrapWithConfig:config];
 }
@@ -52,7 +54,7 @@
 }
 
 
-- (void)THMeshError:(THMesh*)mesh error:(NSError*)error {
+- (void)THMeshError:(THMesh *)mesh error:(NSError *)error {
 	
 }
 

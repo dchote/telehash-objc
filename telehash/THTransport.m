@@ -20,6 +20,7 @@ NSInteger const THTransportTimeout = 30;
 	if (self) {
 		self.active = NO;
 		self.MTU = 1500;
+		self.addressDescription = @"";
 	}
 	
 	return self;
@@ -37,6 +38,7 @@ NSInteger const THTransportTimeout = 30;
 	[description setObject:[self class] forKey:@"type"];
 	[description setObject:self.identifier forKey:@"identifier"];
 	[description setObject:self.name forKey:@"name"];
+	[description setObject:self.addressDescription forKey:@"addressDescription"];
 	
 	return [NSDictionary dictionaryWithDictionary:description];
 }
