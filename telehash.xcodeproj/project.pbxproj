@@ -61,6 +61,7 @@
 		65A53BFA1B7D1E6700150176 /* THPipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A53BF81B7D1E6700150176 /* THPipe.m */; };
 		65E7B8631B87AD340039DF2D /* DebugController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E7B8611B87AD340039DF2D /* DebugController.m */; };
 		65E7B8641B87AD340039DF2D /* Debug.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E7B8621B87AD340039DF2D /* Debug.xib */; };
+		65FA36611C5E96F300337EB7 /* TWG Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65FA36601C5E96F300337EB7 /* TWG Icons.xcassets */; };
 		65FC87631B7D700E00F18B12 /* THTransportAssistant.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FC87611B7D700E00F18B12 /* THTransportAssistant.h */; };
 		65FC87641B7D700E00F18B12 /* THTransportAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FC87621B7D700E00F18B12 /* THTransportAssistant.m */; };
 		65FC877B1B7D751F00F18B12 /* MF_Base32Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FC87791B7D751F00F18B12 /* MF_Base32Additions.h */; };
@@ -159,6 +160,7 @@
 		65E7B8601B87AD340039DF2D /* DebugController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugController.h; sourceTree = "<group>"; };
 		65E7B8611B87AD340039DF2D /* DebugController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugController.m; sourceTree = "<group>"; };
 		65E7B8621B87AD340039DF2D /* Debug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Debug.xib; sourceTree = "<group>"; };
+		65FA36601C5E96F300337EB7 /* TWG Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "TWG Icons.xcassets"; sourceTree = "<group>"; };
 		65FC87611B7D700E00F18B12 /* THTransportAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTransportAssistant.h; sourceTree = "<group>"; };
 		65FC87621B7D700E00F18B12 /* THTransportAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTransportAssistant.m; sourceTree = "<group>"; };
 		65FC87791B7D751F00F18B12 /* MF_Base32Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MF_Base32Additions.h; path = externals/Base32/Base32/MF_Base32Additions.h; sourceTree = SOURCE_ROOT; };
@@ -437,6 +439,7 @@
 				65A53BCE1B7D199000150176 /* Images.xcassets */,
 				65A53BD01B7D199000150176 /* MainMenu.xib */,
 				65E7B8621B87AD340039DF2D /* Debug.xib */,
+				65FA36601C5E96F300337EB7 /* TWG Icons.xcassets */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65FA36611C5E96F300337EB7 /* TWG Icons.xcassets in Resources */,
 				65A53BCF1B7D199000150176 /* Images.xcassets in Resources */,
 				65A53BD21B7D199000150176 /* MainMenu.xib in Resources */,
 				65E7B8641B87AD340039DF2D /* Debug.xib in Resources */,

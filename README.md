@@ -26,3 +26,7 @@ sh autogen.sh
 ````
 
 Once those things have been done, you should be able to open the Xcode project and build.
+
+
+## Thanks To
+Many thanks to TWG for their awesome free icon pack (http://blog.twg.ca/2009/09/free-iphone-toolbar-icons/).
