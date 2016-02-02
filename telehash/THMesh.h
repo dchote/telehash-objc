@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "THLog.h"
+#import "THHashname.h"
 #import "THMeshConfiguration.h"
 #import "THTransportAssistant.h"
+
+extern NSString* const THMeshStateChange;
 
 @class THMesh;
 
@@ -36,6 +39,7 @@ typedef enum {
 
 
 @property THMeshConfiguration* config;
+@property THHashname* localHashname;
 @property THTransportAssistant* transportAssistant;
 @property NSMutableArray* transports;
 @property NSMutableArray* activeTransports;

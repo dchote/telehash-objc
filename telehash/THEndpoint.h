@@ -17,7 +17,11 @@
 @property THHashname* localHashname;
 @property THHashname* remoteHashname;
 
-@property THLink* link;
+@property THLink* establishedLink;
 @property NSMutableArray* pipes;
 
+
++ (THEndpoint *)initWithLocalHashname:(THHashname *)localHashname;
++ (THEndpoint *)endpointFromJSON:(NSData *)json withLocalHashname:(THHashname *)localHashname;
++ (THEndpoint *)endpointFromURI:(NSURL *)uri withLocalHashname:(THHashname *)localHashname;
 @end

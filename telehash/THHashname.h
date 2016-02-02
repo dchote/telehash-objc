@@ -10,7 +10,11 @@
 
 #import "THLog.h"
 
-
 @interface THHashname : NSObject
+
+@property (readonly) NSString* hashname;
+
+@property NSMutableDictionary* secrets;
+@property NSMutableDictionary* keys;
 
 @end

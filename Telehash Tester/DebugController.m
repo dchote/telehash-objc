@@ -46,7 +46,7 @@
 {
 	THLogMethodCall
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshInterfaceList) name:@"meshStateChange" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshInterfaceList) name:THMeshStateChange object:nil];
 }
 
 - (void)refreshInterfaceList

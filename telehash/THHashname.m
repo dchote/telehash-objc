@@ -10,4 +10,14 @@
 
 @implementation THHashname
 
+- (id)init
+{
+	self = [super init];
+	
+	self.secrets = [NSMutableDictionary dictionary];
+	self.keys = [NSMutableDictionary dictionary];
+	
+	return self;
+}
+
 @end

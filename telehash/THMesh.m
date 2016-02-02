@@ -8,6 +8,10 @@
 
 #import "THMesh.h"
 
+NSString* const THMeshStateChange = @"THMeshStateChange";
+
+
+
 @implementation THMesh
 
 
@@ -83,7 +87,7 @@
 		}
 	}
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"meshStateChange" object:self userInfo:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:THMeshStateChange object:self userInfo:nil];
 
 	// TODO send router handshake
 }
@@ -96,7 +100,7 @@
 	
 	if ([self.delegate respondsToSelector:@selector(THMeshError:error:)]) {
 		[self.delegate THMeshError:self error:error];
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"meshStateChange" object:self userInfo:nil];
+		[[NSNotificationCenter defaultCenter] postNotificationName:THMeshStateChange object:self userInfo:nil];
 
 	}
 	
