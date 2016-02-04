@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "THLog.h"
+#import "E3X.h"
 #import "THHashname.h"
 #import "THPath.h"
 

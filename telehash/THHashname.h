@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "THLog.h"
+#import "E3X.h"
 
 @interface THHashname : NSObject
 
-@property NSString* hashname;
+@property (readonly) NSString* hashname;
 
 @property NSMutableDictionary* secrets;
 @property NSMutableDictionary* keys;

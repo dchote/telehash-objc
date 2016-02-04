@@ -51,7 +51,11 @@
 	
 	THEndpoint* endpoint = [THEndpoint initWithLocalHashname:localHashname];
 	
-	// TODO URI parsing logic here
+	if (uri.hashname) {
+		endpoint.remoteHashname = uri.hashname;
+	}
+	
+	// TODO URI->pipe generation
 	
 	return endpoint;
 }

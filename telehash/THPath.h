@@ -14,9 +14,9 @@
 
 @property NSString* type;
 
-@property NSString* url;
-
 @property NSString* host;
 @property uint16_t port;
+
+@property NSString* url; // only when type==http
 
 @end
