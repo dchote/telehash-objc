@@ -12,7 +12,7 @@
 
 @interface THHashname : NSObject
 
-@property (readonly) NSString* hashname;
+@property NSString* hashname;
 
 @property NSMutableDictionary* secrets;
 @property NSMutableDictionary* keys;

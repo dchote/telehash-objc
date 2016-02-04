@@ -10,12 +10,22 @@
 
 #import "THLog.h"
 #import "THHashname.h"
+#import "THURI.h"
 #import "THLink.h"
+
+typedef enum {
+	THEndpointStatusPending,
+	THEndpointStatusReady,
+	THEndpointStatusConnected,
+	THEndpointStatusError,
+} THEndpointStatus;
 
 @interface THEndpoint : NSObject
 
 @property THHashname* localHashname;
 @property THHashname* remoteHashname;
+
+@property THEndpointStatus status;
 
 @property THLink* establishedLink;
 @property NSMutableArray* pipes;
@@ -23,5 +33,5 @@
 
 + (THEndpoint *)initWithLocalHashname:(THHashname *)localHashname;
 + (THEndpoint *)endpointFromJSON:(NSData *)json withLocalHashname:(THHashname *)localHashname;
-+ (THEndpoint *)endpointFromURI:(NSURL *)uri withLocalHashname:(THHashname *)localHashname;
++ (THEndpoint *)endpointFromURI:(THURI *)uri withLocalHashname:(THHashname *)localHashname;
 @end

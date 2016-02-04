@@ -18,8 +18,11 @@ NSString* const THMeshStateChange = @"THMeshStateChange";
 - (id)init {
 	if (self) {
 		self.transportAssistant = [[THTransportAssistant alloc] init];
+		
 		self.transports = [NSMutableArray array];
 		self.activeTransports = [NSMutableArray array];
+		self.endpoints = [NSMutableDictionary dictionary];
+		
 		self.status = THMeshStatusStartup;
 	}
 	
@@ -54,6 +57,19 @@ NSString* const THMeshStateChange = @"THMeshStateChange";
 				
 				
 			}
+		}
+	}
+	
+	for (NSString* uriString in self.config.routerLinks) {
+		THURI* uri = [THURI initWithLinkURI:uriString];
+		
+		THEndpoint* routerEndpoint = [THEndpoint endpointFromURI:uri withLocalHashname:self.localHashname];
+		
+		if (routerEndpoint.remoteHashname && routerEndpoint.status != THEndpointStatusError) {
+			THLogDebugMessage(@"Adding router endpoint with hashname %@ to mesh", routerEndpoint.remoteHashname.hashname);
+			[self.endpoints setObject:routerEndpoint forKey:routerEndpoint.remoteHashname.hashname];
+		} else {
+			THLogErrorTHessage(@"Unable to add router with URI %@ to mesh", uriString);
 		}
 	}
 	

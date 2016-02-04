@@ -19,6 +19,8 @@
 	self.establishedLink = nil;
 	self.pipes = [NSMutableArray array];
 	
+	self.status = THEndpointStatusPending;
+	
 	return self;
 }
 
@@ -43,7 +45,7 @@
 	return endpoint;
 }
 
-+ (THEndpoint *)endpointFromURI:(NSURL *)uri withLocalHashname:(THHashname *)localHashname
++ (THEndpoint *)endpointFromURI:(THURI *)uri withLocalHashname:(THHashname *)localHashname
 {
 	THLogMethodCall
 	

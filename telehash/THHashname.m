@@ -14,6 +14,7 @@
 {
 	self = [super init];
 	
+	self.hashname = @"unknown";
 	self.secrets = [NSMutableDictionary dictionary];
 	self.keys = [NSMutableDictionary dictionary];
 	

@@ -20,4 +20,6 @@
 @property uint16_t networkListenPort;
 @property NSDictionary* serialBaudRates;
 
+@property NSMutableArray* routerLinks;
+
 @end

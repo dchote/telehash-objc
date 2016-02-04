@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #import "THLog.h"
+#import "THEndpoint.h"
 #import "THHashname.h"
+#import "THURI.h"
 #import "THMeshConfiguration.h"
 #import "THTransportAssistant.h"
 
@@ -44,6 +46,7 @@ typedef enum {
 @property NSMutableArray* transports;
 @property NSMutableArray* activeTransports;
 
+@property NSMutableDictionary* endpoints;
 
 - (void)bootstrapWithConfig:(THMeshConfiguration *)config;
 - (void)shutdown;

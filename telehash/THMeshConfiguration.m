@@ -16,6 +16,7 @@
 		self.enabledTransportIDs = nil;
 		self.networkListenPort = 0;
 		self.serialBaudRates = [NSDictionary dictionary];
+		self.routerLinks = [NSMutableArray array];
 	}
 	
 	return self;

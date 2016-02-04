@@ -9,7 +9,18 @@
 #import <Foundation/Foundation.h>
 
 #import "THLog.h"
+#import "THHashname.h"
+#import "THPath.h"
 
 @interface THURI : NSObject
+
+@property NSString* host;
+@property uint16_t port;
+
+@property THHashname* hashname;
+@property NSMutableArray* paths;
+
+
++ (THURI *)initWithLinkURI:(NSString *)link;
 
 @end
