@@ -10,7 +10,7 @@
 
 @implementation E3X
 
-+ (uint8_t)CSIDFromString:(NSString *)identifier
++ (unsigned char)CSIDFromString:(NSString *)identifier
 {
 	if ([identifier isEqualToString:@"cs1a"] || [identifier isEqualToString:@"1a"]) {
 		return 0x1a;

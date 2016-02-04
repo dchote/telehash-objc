@@ -13,7 +13,7 @@
 
 @interface E3X : NSObject
 
-+ (uint8_t)CSIDFromString:(NSString *)identifier;
++ (unsigned char)CSIDFromString:(NSString *)identifier;
 + (NSString *)CSIDString:(unsigned char)CSID;
 
 @end
