@@ -44,8 +44,8 @@
 			[hashnameRollup appendBytes:&CSID length:sizeof(unsigned char)];
 			hashnameRollup = [NSMutableData dataWithData:[hashnameRollup sha256Hash]];
 			
-			// append the key to the prior hash and then hash
-			[hashnameRollup appendData:[self.keys objectForKey:key]];
+			// append a hashed version of the key to the prior hash and then hash
+			[hashnameRollup appendData:[[self.keys objectForKey:key] sha256Hash]];
 			hashnameRollup = [NSMutableData dataWithData:[hashnameRollup sha256Hash]];
 		}
 		
