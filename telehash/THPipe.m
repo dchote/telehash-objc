@@ -10,4 +10,23 @@
 
 @implementation THPipe
 
+- (id)init
+{
+	self = [super init];
+	
+	self.type = nil;
+	self.keepalive = 60;
+	self.cloaked = NO;
+	
+	self.link = nil;
+	self.transport = nil;
+	
+	self.status = THPipeStatusDown;
+	
+	self.lastInboundActivity = 0;
+	self.lastOutboundActivity = 0;
+	
+	return self;
+}
+
 @end

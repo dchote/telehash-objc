@@ -17,6 +17,8 @@
 
 	if (self) {
 		udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+		
+		self.supportedPathTypes = [NSArray arrayWithObjects:@"udp4", @"tcp4", @"udp6", @"tcp6", nil];
 	}
 	
 	return self;
@@ -106,6 +108,27 @@
 	
 	[udpSocket closeAfterSending];
 }
+
+
+- (THPipe *)pipeFromPath:(THPath *)path
+{
+	THLogMethodCall
+	
+	if ([self.supportedPathTypes containsObject:path.type]) {
+		THPipe* pipe = [[THPipe alloc] init];
+		
+		// TODO pipe setup
+		
+		return pipe;
+	}
+	
+	THLogErrorTHessage(@"transport with identifier %@ does not support path type %@", self.identifier, path.type);
+	return nil;
+}
+
+
+
+
 
 
 

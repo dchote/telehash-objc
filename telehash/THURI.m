@@ -18,9 +18,6 @@ uint16_t const THDefaultPort = 42424;
 {
 	self = [super init];
 	
-	self.host = nil;
-	self.port = THDefaultPort;
-	
 	self.hashname = nil;
 	self.paths = [NSMutableArray array];
 	
@@ -40,12 +37,36 @@ uint16_t const THDefaultPort = 42424;
 		THLogErrorTHessage(@"non-link uri specified");
 		return nil;
 	} else {
-		uri.host = URIComponents.host;
+		THPath* path = [[THPath alloc] init];
 		
+		// TODO determine if host is an ipv6 representation
+		path.type = @"udp4";
+		path.host = URIComponents.host;
 		if (URIComponents.port) {
-			uri.port = [URIComponents.port intValue];
+			path.port = [URIComponents.port intValue];
+		} else {
+			path.port = THDefaultPort;
 		}
 		
+		// add udp4 to uri paths array
+		[uri.paths addObject:path];
+		
+		
+		path = [[THPath alloc] init];
+		path.type = @"tcp4";
+		path.host = URIComponents.host;
+		if (URIComponents.port) {
+			path.port = [URIComponents.port intValue];
+		} else {
+			path.port = THDefaultPort;
+		}
+		
+		// add tcp4 to uri paths array
+		[uri.paths addObject:path];
+		
+		
+		
+		// determine query items that are usable
 		for (NSURLQueryItem* item in URIComponents.queryItems) {
 			if ([item.name containsString:@"cs"]) {
 				unsigned char CSID = [E3X CSIDFromString:item.name];
@@ -55,6 +76,7 @@ uint16_t const THDefaultPort = 42424;
 					[uri.hashname.keys setObject:key forKey:[E3X CSIDString:CSID]];
 				}
 			}
+			// TODO Path, CSK handling
 		}
 	}
 	

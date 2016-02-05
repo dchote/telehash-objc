@@ -48,6 +48,8 @@ typedef enum {
 
 @property NSMutableDictionary* endpoints;
 
+
 - (void)bootstrapWithConfig:(THMeshConfiguration *)config;
 - (void)shutdown;
+- (void)establishRouterLinks;
 @end

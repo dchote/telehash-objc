@@ -10,6 +10,8 @@
 #import "GCDAsyncUdpSocket.h"
 
 #import "THLog.h"
+#import "THPipe.h"
+#import "THPath.h"
 
 extern NSInteger const THTransportInitDelay;
 extern NSInteger const THTransportTimeout;
@@ -34,7 +36,10 @@ extern NSInteger const THTransportTimeout;
 
 @property int MTU;
 
+@property NSArray* supportedPathTypes;
 
 - (void)shutdown;
 - (NSDictionary *)description;
+
+- (THPipe *)pipeFromPath:(THPath *)path;
 @end

@@ -16,7 +16,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	THLogMethodCall
 	
-	logger = [[THLog alloc] initWithLoggedEventTypes:[NSArray arrayWithObject:THLAllEvents] classNames:[NSArray arrayWithObject:THLAllClasses]];
+	self.logger = [[THLog alloc] initWithLoggedEventTypes:[NSArray arrayWithObject:THLAllEvents] classNames:[NSArray arrayWithObject:THLAllClasses]];
 	debugController = [DebugController sharedController];
 	THLogInfoMessage(@"We are starting up");
 	
@@ -35,24 +35,26 @@
 	// router hashname: dnnoqfhxvotbwu6hjsjtgbijjuc6heobdiqh32h7i3wk3oh6zkuq
 	[config.routerLinks addObject:@"link://172.20.0.203:41797?cs1a=am4nohyyofgfxtv63ljghkmtfwq6fwwbki&cs2a=gcbacirqbudaskugjcdpodibaeaqkaadqiaq6abqqiaquaucaeaqbugc5exov22ismazaseoqo624vwl5qxjjlmerbt5sstdccygc3negfjmqinyaxrp6sgwlcldacay67qhtd7c4gcg7ye2azuu3h5vwwfmxjpwplpd4vtpwjfw4nuu6ppc66feoj3fizyongfg5dhjb6fmbjdnrboxuvszh322ta53tzvfbufhplsgn7rivgywp2kzczqs3zblyst35yifvux4mwzrcpwt4h6zd4jmqzulmbfqdw5odkocfoxlqiickb3fikcyyucom2pfuhmf5w2xogtf5ef4hc77j2qg3535ffhhbhpeommlzjabaxfjgrsri5ilahfdtxzfjezgcpdbbjy5lvgm35qdcbttnrofktc5qrnovbfvwziigq7d5fgmtdjn4u7zrpgwe2qnat7w2jycamaqaai&cs3a=7bmkxdqsxorkfrf7dq5dnnxdl4aaeyyv7ghnk5pqchldkh5r3v5a"];
 	
-	mesh = [[THMesh alloc] init];
-	mesh.delegate = self;
+	self.mesh = [[THMesh alloc] init];
+	self.mesh.delegate = self;
 	
 	// weak assignment of mesh within debugController
-	debugController.mesh = mesh;
+	debugController.mesh = self.mesh;
 	
-	[mesh bootstrapWithConfig:config];
+	[self.mesh bootstrapWithConfig:config];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-	if (mesh) {
-		[mesh shutdown];
+	if (self.mesh) {
+		[self.mesh shutdown];
 	}
 }
 
 - (void)THMeshReady:(THMesh *)mesh {
 	THLogInfoMessage(@"Mesh is ready...");
 	[debugController showWindow:self];
+	
+	[mesh performSelector:@selector(establishRouterLinks) withObject:nil afterDelay:2];
 }
 
 

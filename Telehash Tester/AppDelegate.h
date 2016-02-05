@@ -14,11 +14,11 @@
 #import "THTransport.h"
 
 
-@interface AppDelegate : NSObject <THMeshDelegate, NSApplicationDelegate> {
-	THLog* logger;
-	THMesh* mesh;
+@interface AppDelegate : NSObject <THMeshDelegate, NSApplicationDelegate>
+
+@property THLog* logger;
+@property THMesh* mesh;
 	
-}
 
 @end
 

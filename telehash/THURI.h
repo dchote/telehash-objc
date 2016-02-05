@@ -15,9 +15,6 @@
 
 @interface THURI : NSObject
 
-@property NSString* host;
-@property uint16_t port;
-
 @property THHashname* hashname;
 @property NSMutableArray* paths;
 

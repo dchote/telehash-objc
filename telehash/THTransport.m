@@ -21,6 +21,8 @@ NSInteger const THTransportTimeout = 30;
 		self.active = NO;
 		self.MTU = 1500;
 		self.addressDescription = @"";
+		
+		self.supportedPathTypes = [NSArray array];
 	}
 	
 	return self;
@@ -43,5 +45,9 @@ NSInteger const THTransportTimeout = 30;
 	return [NSDictionary dictionaryWithDictionary:description];
 }
 
-
+- (THPipe *)pipeFromPath:(THPath *)path
+{
+	THLogErrorTHessage(@"This method should not be called directly");
+	return nil;
+}
 @end

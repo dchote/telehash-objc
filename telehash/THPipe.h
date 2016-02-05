@@ -9,12 +9,31 @@
 #import <Foundation/Foundation.h>
 
 #import "THLog.h"
+#import "THPath.h"
 #import "THLink.h"
-#import "THTransport.h"
+
+@class THTransport;
+
+typedef enum {
+	THPipeStatusDown,
+	THPipeStatusUp,
+	THPipeStatusError
+} THPipeStatus;
 
 @interface THPipe : NSObject
 
+@property NSString* type;
+@property NSUInteger keepalive;
+
+@property BOOL cloaked;
+
+@property (retain) THPath* path;
 @property (weak) THLink* link;
 @property (weak) THTransport* transport;
+
+@property THPipeStatus status;
+
+@property NSUInteger lastInboundActivity;
+@property NSUInteger lastOutboundActivity;
 
 @end

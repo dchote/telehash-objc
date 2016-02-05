@@ -17,6 +17,7 @@
 	
 	if (self) {
 		self.availableBaudRates = @[@300, @1200, @2400, @4800, @9600, @14400, @19200, @28800, @38400, @57600, @115200, @230400];
+		self.supportedPathTypes = [NSArray arrayWithObjects:@"serial", nil];
 	}
 	
 	return self;
@@ -44,6 +45,22 @@
 	THLogMethodCall
 	
 	[self closeSerialPort];
+}
+
+- (THPipe *)pipeFromPath:(THPath *)path
+{
+	THLogMethodCall
+	
+	if ([self.supportedPathTypes containsObject:path.type]) {
+		THPipe* pipe = [[THPipe alloc] init];
+		
+		// TODO pipe setup
+		
+		return pipe;
+	}
+	
+	THLogErrorTHessage(@"transport with identifier %@ does not support path type %@", self.identifier, path.type);
+	return nil;
 }
 
 
