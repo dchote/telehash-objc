@@ -14,6 +14,7 @@
 	if (self) {
 		self.localHashname = nil;
 		self.enabledTransportIDs = nil;
+		self.enabledTransportPathTypes = nil;
 		self.networkListenPort = 0;
 		self.serialBaudRates = [NSDictionary dictionary];
 		self.routerLinks = [NSMutableArray array];
@@ -22,8 +23,9 @@
 	return self;
 }
 
-+ (THMeshConfiguration *)initWithConfigFile:(NSString *)filePath
-{
++ (THMeshConfiguration *)initWithConfigFile:(NSString *)filePath {
+	THLogMethodCall
+	
 	THMeshConfiguration* meshConfig = [[THMeshConfiguration alloc] init];
 	
 	// TODO load actual config
@@ -32,8 +34,9 @@
 }
 
 
-- (void)saveConfigToFile:(NSString *)filePath
-{
+- (void)saveConfigToFile:(NSString *)filePath {
+	THLogMethodCall
+	
 	// TODO save actual config
 }
 

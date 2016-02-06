@@ -25,6 +25,10 @@
 	// Only enable certain transports
 	// config.enabledTransportIDs = [NSArray arrayWithObjects:@"en0", @"en1", nil];
 	
+	// Only enable certain path types
+	config.enabledTransportPathTypes = [NSArray arrayWithObjects:@"udp4", nil];
+	
+	
 	// network listen port (udp/tcp*)
 	//config.networkListenPort = 42424;
 	

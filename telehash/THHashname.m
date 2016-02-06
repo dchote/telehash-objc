@@ -18,8 +18,7 @@
 
 @implementation THHashname
 
-- (id)init
-{
+- (id)init {
 	self = [super init];
 	
 	self.hashnameCache = nil;
@@ -30,8 +29,7 @@
 	return self;
 }
 
-- (NSString *)hashname
-{
+- (NSString *)hashname {
 	// DEBUG: router hashname should match: dnnoqfhxvotbwu6hjsjtgbijjuc6heobdiqh32h7i3wk3oh6zkuq
 	
 	if (!self.hashnameCache) {

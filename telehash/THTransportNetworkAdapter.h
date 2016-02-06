@@ -21,9 +21,15 @@
 @property NSString* IPv6Address;
 @property NSString* IPv6Netmask;
 
+@property uint16_t udpListenPort;
+@property uint16_t tcpListenPort;
+
+
+@property NSMutableArray* pipes;
+
+
 
 - (BOOL)hasIPAddress;
-- (NSDictionary *)description;
 - (void)bindToPort:(uint16_t)port;
 
 

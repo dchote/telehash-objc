@@ -19,10 +19,10 @@ NSInteger const THTransportTimeout = 30;
 - (id)init {
 	if (self) {
 		self.active = NO;
+		self.type = @"unknown";
 		self.MTU = 1500;
-		self.addressDescription = @"";
-		
 		self.supportedPathTypes = [NSArray array];
+		self.enabledPathTypes = [NSMutableArray array];
 	}
 	
 	return self;
@@ -32,22 +32,40 @@ NSInteger const THTransportTimeout = 30;
 	THLogErrorTHessage(@"class did not implement shutdown method");
 }
 
-- (NSDictionary *)description {
-	NSMutableDictionary* description = [NSMutableDictionary dictionary];
+- (NSString *)addressDescription {
 	
-	[description setObject:[NSNumber numberWithInt:self.active] forKey:@"active"];
-	[description setObject:[NSNumber numberWithInt:self.MTU] forKey:@"MTU"];
-	[description setObject:[self class] forKey:@"type"];
-	[description setObject:self.identifier forKey:@"identifier"];
-	[description setObject:self.name forKey:@"name"];
-	[description setObject:self.addressDescription forKey:@"addressDescription"];
+	NSString* addressDescription = @"";
 	
-	return [NSDictionary dictionaryWithDictionary:description];
+	for (THPath* path in self.paths) {
+		addressDescription = [addressDescription stringByAppendingFormat:@"%@ ", path.description];
+	}
+	
+	return [addressDescription stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
-- (THPipe *)pipeFromPath:(THPath *)path
-{
+- (NSDictionary *)info {
+	NSMutableDictionary* info = [NSMutableDictionary dictionary];
+	
+	[info setObject:[NSNumber numberWithBool:self.active] forKey:@"active"];
+	[info setObject:[NSNumber numberWithInt:self.MTU] forKey:@"MTU"];
+	[info setObject:self.type forKey:@"type"];
+	[info setObject:self.identifier forKey:@"identifier"];
+	[info setObject:self.name forKey:@"name"];
+	[info setObject:self.addressDescription forKey:@"addressDescription"];
+	
+	[info setObject:self.paths forKey:@"paths"];
+	
+	return [NSDictionary dictionaryWithDictionary:info];
+}
+
+- (NSArray *)paths {
 	THLogErrorTHessage(@"This method should not be called directly");
 	return nil;
 }
+
+- (THPipe *)pipeFromPath:(THPath *)path {
+	THLogErrorTHessage(@"This method should not be called directly");
+	return nil;
+}
+
 @end

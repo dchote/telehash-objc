@@ -38,6 +38,10 @@
 		657D868F1B84073D009282BE /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D868B1B84073D009282BE /* GCDAsyncUdpSocket.m */; };
 		65956C941C63F7BB009E5903 /* MF_Base32Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 65956C921C63F7BB009E5903 /* MF_Base32Additions.h */; };
 		65956C951C63F7BB009E5903 /* MF_Base32Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 65956C931C63F7BB009E5903 /* MF_Base32Additions.m */; };
+		65956C9C1C64EC1A009E5903 /* THPipeNetworkAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 65956C9A1C64EC1A009E5903 /* THPipeNetworkAdapter.h */; };
+		65956C9D1C64EC1A009E5903 /* THPipeNetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65956C9B1C64EC1A009E5903 /* THPipeNetworkAdapter.m */; };
+		65956CA01C64EC27009E5903 /* THPipeSerial.h in Headers */ = {isa = PBXBuildFile; fileRef = 65956C9E1C64EC27009E5903 /* THPipeSerial.h */; };
+		65956CA11C64EC27009E5903 /* THPipeSerial.m in Sources */ = {isa = PBXBuildFile; fileRef = 65956C9F1C64EC27009E5903 /* THPipeSerial.m */; };
 		65A53B9D1B7D160D00150176 /* THMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 65A53B9B1B7D160D00150176 /* THMesh.h */; };
 		65A53B9E1B7D160D00150176 /* THMesh.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A53B9C1B7D160D00150176 /* THMesh.m */; };
 		65A53BA11B7D164600150176 /* THTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 65A53B9F1B7D164600150176 /* THTransport.h */; };
@@ -131,6 +135,10 @@
 		657D868B1B84073D009282BE /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncUdpSocket.m; path = externals/CocoaAsyncSocket/Source/GCD/GCDAsyncUdpSocket.m; sourceTree = SOURCE_ROOT; };
 		65956C921C63F7BB009E5903 /* MF_Base32Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MF_Base32Additions.h; path = externals/Base32/Base32/MF_Base32Additions.h; sourceTree = SOURCE_ROOT; };
 		65956C931C63F7BB009E5903 /* MF_Base32Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MF_Base32Additions.m; path = externals/Base32/Base32/MF_Base32Additions.m; sourceTree = SOURCE_ROOT; };
+		65956C9A1C64EC1A009E5903 /* THPipeNetworkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPipeNetworkAdapter.h; sourceTree = "<group>"; };
+		65956C9B1C64EC1A009E5903 /* THPipeNetworkAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPipeNetworkAdapter.m; sourceTree = "<group>"; };
+		65956C9E1C64EC27009E5903 /* THPipeSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPipeSerial.h; sourceTree = "<group>"; };
+		65956C9F1C64EC27009E5903 /* THPipeSerial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPipeSerial.m; sourceTree = "<group>"; };
 		65A53B9B1B7D160D00150176 /* THMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMesh.h; sourceTree = "<group>"; };
 		65A53B9C1B7D160D00150176 /* THMesh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMesh.m; sourceTree = "<group>"; };
 		65A53B9F1B7D164600150176 /* THTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTransport.h; sourceTree = "<group>"; };
@@ -284,6 +292,7 @@
 				65A53BAD1B7D172F00150176 /* Endpoint */,
 				65A53BB71B7D178500150176 /* E3X */,
 				65A53BA81B7D16FC00150176 /* Mesh */,
+				65956C991C64EA97009E5903 /* Pipes */,
 				65A53BA71B7D16A900150176 /* Transports */,
 				65A53BB21B7D175000150176 /* Packet */,
 				65A53BB81B7D17DF00150176 /* Channels */,
@@ -317,6 +326,19 @@
 				6579F9861AE42759005E55A1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		65956C991C64EA97009E5903 /* Pipes */ = {
+			isa = PBXGroup;
+			children = (
+				65A53BF71B7D1E6700150176 /* THPipe.h */,
+				65A53BF81B7D1E6700150176 /* THPipe.m */,
+				65956C9A1C64EC1A009E5903 /* THPipeNetworkAdapter.h */,
+				65956C9B1C64EC1A009E5903 /* THPipeNetworkAdapter.m */,
+				65956C9E1C64EC27009E5903 /* THPipeSerial.h */,
+				65956C9F1C64EC27009E5903 /* THPipeSerial.m */,
+			);
+			name = Pipes;
 			sourceTree = "<group>";
 		};
 		65A53B7C1B7D145500150176 /* Frameworks */ = {
@@ -353,8 +375,6 @@
 				657D86821B7FA8C8009282BE /* THMeshConfiguration.m */,
 				65A53BA91B7D171000150176 /* THLink.h */,
 				65A53BAA1B7D171000150176 /* THLink.m */,
-				65A53BF71B7D1E6700150176 /* THPipe.h */,
-				65A53BF81B7D1E6700150176 /* THPipe.m */,
 				65435D711C6237D400BF7101 /* THPath.h */,
 				65435D6F1C6237C500BF7101 /* THPath.m */,
 			);
@@ -494,6 +514,7 @@
 			files = (
 				65A53BB51B7D176000150176 /* THPacket.h in Headers */,
 				65A53BED1B7D1CBF00150176 /* E3X-cs3a.h in Headers */,
+				65956C9C1C64EC1A009E5903 /* THPipeNetworkAdapter.h in Headers */,
 				65A53BA11B7D164600150176 /* THTransport.h in Headers */,
 				657D868C1B84073D009282BE /* GCDAsyncSocket.h in Headers */,
 				657D86771B7FA63E009282BE /* THEndpoint.h in Headers */,
@@ -502,6 +523,7 @@
 				65435D721C6237D400BF7101 /* THPath.h in Headers */,
 				6544E71B1C63D9BA00FF771F /* CryptoHashAdditions.h in Headers */,
 				65295AC11B8776E700A27A68 /* ORSSerialRequest.h in Headers */,
+				65956CA01C64EC27009E5903 /* THPipeSerial.h in Headers */,
 				65A53BF91B7D1E6700150176 /* THPipe.h in Headers */,
 				65A53BE81B7D1C8900150176 /* E3X.h in Headers */,
 				657D86831B7FA8C8009282BE /* THMeshConfiguration.h in Headers */,
@@ -694,11 +716,13 @@
 				65A53BA21B7D164600150176 /* THTransport.m in Sources */,
 				657D86841B7FA8C8009282BE /* THMeshConfiguration.m in Sources */,
 				65FC87641B7D700E00F18B12 /* THTransportAssistant.m in Sources */,
+				65956C9D1C64EC1A009E5903 /* THPipeNetworkAdapter.m in Sources */,
 				657D86801B7FA81F009282BE /* THTransportNetworkAdapter.m in Sources */,
 				6544E71C1C63D9BA00FF771F /* CryptoHashAdditions.m in Sources */,
 				65295AD31B879B5D00A27A68 /* THTransportMultipeerConnectivity.m in Sources */,
 				657D868F1B84073D009282BE /* GCDAsyncUdpSocket.m in Sources */,
 				657D868D1B84073D009282BE /* GCDAsyncSocket.m in Sources */,
+				65956CA11C64EC27009E5903 /* THPipeSerial.m in Sources */,
 				65295ABE1B8776E700A27A68 /* ORSSerialPort.m in Sources */,
 				65A53B9E1B7D160D00150176 /* THMesh.m in Sources */,
 				65A53BEE1B7D1CBF00150176 /* E3X-cs3a.m in Sources */,

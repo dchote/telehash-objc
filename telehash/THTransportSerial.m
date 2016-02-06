@@ -17,6 +17,9 @@
 	
 	if (self) {
 		self.availableBaudRates = @[@300, @1200, @2400, @4800, @9600, @14400, @19200, @28800, @38400, @57600, @115200, @230400];
+		
+		self.type = @"serial";
+		
 		self.supportedPathTypes = [NSArray arrayWithObjects:@"serial", nil];
 	}
 	
@@ -47,8 +50,18 @@
 	[self closeSerialPort];
 }
 
-- (THPipe *)pipeFromPath:(THPath *)path
-{
+- (NSArray *)paths {
+	THLogMethodCall
+	
+	NSMutableArray* paths = [NSMutableArray array];
+	
+	// TODO serial paths
+	
+	return paths;
+}
+
+
+- (THPipe *)pipeFromPath:(THPath *)path {
 	THLogMethodCall
 	
 	if ([self.supportedPathTypes containsObject:path.type]) {

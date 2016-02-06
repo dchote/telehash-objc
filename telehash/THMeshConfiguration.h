@@ -16,6 +16,7 @@
 @property THHashname* localHashname;
 
 @property NSArray* enabledTransportIDs;
+@property NSArray* enabledTransportPathTypes;
 
 @property uint16_t networkListenPort;
 @property NSDictionary* serialBaudRates;

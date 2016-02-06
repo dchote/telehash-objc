@@ -47,13 +47,13 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="54" rowSizeStyle="automatic" headerView="uhW-ju-x6W" viewBased="YES" outlineTableColumn="bYr-2E-Bay" id="whk-x3-6zy">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="386" height="101"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="385.5" height="0.0"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                     <tableColumns>
-                                                                        <tableColumn width="382.64453125" minWidth="40" maxWidth="1000" id="bYr-2E-Bay">
+                                                                        <tableColumn width="383.14453125" minWidth="40" maxWidth="1000" id="bYr-2E-Bay">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Active Interfaces">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -96,14 +96,14 @@
                                                                                         </textField>
                                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Cez-em-cuI">
                                                                                             <rect key="frame" x="54" y="3" width="327.5" height="17"/>
-                                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Address Description" id="yg3-i7-Loc">
                                                                                                 <font key="font" metaFont="system"/>
                                                                                                 <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                                             </textFieldCell>
                                                                                             <connections>
-                                                                                                <binding destination="04t-k8-SAH" name="value" keyPath="objectValue.addressDescription" id="APs-7r-e4v"/>
+                                                                                                <binding destination="04t-k8-SAH" name="value" keyPath="objectValue.addressDescription" id="hst-B8-OdR"/>
                                                                                             </connections>
                                                                                         </textField>
                                                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ObJ-6J-To9">

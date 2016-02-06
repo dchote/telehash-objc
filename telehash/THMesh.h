@@ -14,6 +14,7 @@
 #import "THURI.h"
 #import "THMeshConfiguration.h"
 #import "THTransportAssistant.h"
+#import "THTransport.h"
 
 extern NSString* const THMeshStateChange;
 

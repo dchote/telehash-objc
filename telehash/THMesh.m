@@ -38,10 +38,21 @@ NSString* const THMeshStateChange = @"THMeshStateChange";
 	// determine transports
 	for (THTransport* transport in [self.transportAssistant getAllTransports]) {
 		if (config.enabledTransportIDs == nil || [config.enabledTransportIDs containsObject:transport.identifier]) {
-			THLogDebugMessage(@"Adding transport %@ with properties %@ to active transport list.", transport.identifier, [transport description]);
+			THLogDebugMessage(@"Adding transport %@ with properties %@ to active transport list.", transport.identifier, transport.info);
 			[self.transports addObject:transport];
 			
 			transport.delegate = self;
+			
+			// if we are restricting path types, inform transports
+			if (config.enabledTransportPathTypes) {
+				for (NSString* pathType in config.enabledTransportPathTypes) {
+					if ([transport.supportedPathTypes containsObject:pathType]) {
+						[transport.enabledPathTypes addObject:pathType];
+					}
+				}
+			} else {
+				transport.enabledPathTypes = [NSMutableArray arrayWithArray:transport.supportedPathTypes];
+			}
 			
 			// initialize each transport type accordingly
 			if ([transport isKindOfClass:[THTransportNetworkAdapter class]]) {
@@ -74,8 +85,7 @@ NSString* const THMeshStateChange = @"THMeshStateChange";
 }
 
 
-- (void)establishRouterLinks
-{
+- (void)establishRouterLinks {
 	for (NSString* uriString in self.config.routerLinks) {
 		THURI* uri = [THURI initWithLinkURI:uriString];
 		
@@ -94,11 +104,11 @@ NSString* const THMeshStateChange = @"THMeshStateChange";
 - (void)THTransportReady:(THTransport *)transport {
 	THLogInfoMessage(@"transport %@ is now ready", transport.identifier);
 	
-	if (![self.activeTransports containsObject:transport]) {
+	if (transport.active && ![self.activeTransports containsObject:transport]) {
 		[self.activeTransports addObject:transport];
 	}
 	
-	if (self.status == THMeshStatusStartup) {
+	if (self.activeTransports.count > 0 && self.status == THMeshStatusStartup) {
 		self.status = THMeshStatusReady;
 		
 		if ([self.delegate respondsToSelector:@selector(THMeshReady:)]) {
@@ -107,8 +117,6 @@ NSString* const THMeshStateChange = @"THMeshStateChange";
 	}
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:THMeshStateChange object:self userInfo:nil];
-
-	// TODO send router handshake
 }
 
 

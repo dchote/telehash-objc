@@ -14,8 +14,7 @@
 
 @implementation DebugController
 
-+ (DebugController *)sharedController
-{
++ (DebugController *)sharedController {
 	static DebugController *sharedDebugControllerInstance = nil;
 	
 	static dispatch_once_t predicate;
@@ -42,15 +41,15 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)windowDidLoad
-{
+- (void)windowDidLoad {
 	THLogMethodCall
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshInterfaceList) name:THMeshStateChange object:nil];
-}
+	}
 
-- (void)refreshInterfaceList
-{
+- (void)refreshInterfaceList {
+	THLogMethodCall
+	
 	[self.interfaceList reloadData];
 }
 
@@ -58,8 +57,7 @@
 #pragma -
 #pragma mark OutlineView Delegation
 
-- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
-{
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
 	if (outlineView == self.interfaceList) {
 		return self.mesh.activeTransports.count;
 	}
@@ -68,8 +66,7 @@
 }
 
 
-- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
-{
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
 	if (outlineView == self.interfaceList) {
 		return [self.mesh.activeTransports objectAtIndex:index];
 	}
@@ -77,13 +74,11 @@
 	return nil;
 }
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
-{
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
 	return NO;
 }
 
-- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
-{
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item {
 	return item;
 }
 
@@ -92,8 +87,7 @@
 }
 
 /*
-- (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
-{
+- (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
 	return [outlineView makeViewWithIdentifier:[tableColumn identifier] owner:self];
 }
 */
@@ -106,17 +100,16 @@
 #pragma mark -
 #pragma mark Splitview Delegates
 
-- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedCoordinate ofSubviewAt:(int)index
-{
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedCoordinate ofSubviewAt:(int)index {
 	return proposedCoordinate + 200.0f;
 }
 
-- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedCoordinate ofSubviewAt:(int)index
-{
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedCoordinate ofSubviewAt:(int)index {
 	return proposedCoordinate - 200.0f;
 }
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
 	return NO;
 }
+
 @end

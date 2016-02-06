@@ -8,8 +8,11 @@
 
 #import "THTransportNetworkAdapter.h"
 
+#import "THPipeNetworkAdapter.h"
+
 @implementation THTransportNetworkAdapter {
 	GCDAsyncUdpSocket* udpSocket;
+	GCDAsyncSocket* tcpSocket;
 }
 
 - (id)init {
@@ -17,8 +20,13 @@
 
 	if (self) {
 		udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+		tcpSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+		
+		self.type = @"networkadapter";
 		
 		self.supportedPathTypes = [NSArray arrayWithObjects:@"udp4", @"tcp4", @"udp6", @"tcp6", nil];
+		
+		self.pipes = [NSMutableArray array];
 	}
 	
 	return self;
@@ -32,31 +40,38 @@
 	return NO;
 }
 
-- (NSDictionary *)description {
-	NSMutableDictionary* description = [NSMutableDictionary dictionaryWithDictionary:[super description]];
+- (NSDictionary *)info {
+	NSMutableDictionary* info = [NSMutableDictionary dictionaryWithDictionary:[super info]];
 	
 	if (self.interfaceType) {
-		[description setObject:self.interfaceType forKey:@"interfaceType"];
-
+		[info setObject:self.interfaceType forKey:@"interfaceType"];
 	}
 	
 	if (self.IPv4Address) {
-		[description setObject:self.IPv4Address forKey:@"IPv4Address"];
+		[info setObject:self.IPv4Address forKey:@"IPv4Address"];
 	}
 	
 	if (self.IPv4Netmask) {
-		[description setObject:self.IPv4Netmask forKey:@"IPv4Netmask"];
+		[info setObject:self.IPv4Netmask forKey:@"IPv4Netmask"];
 	}
 	
 	if (self.IPv6Address) {
-		[description setObject:self.IPv6Address forKey:@"IPv6Address"];
+		[info setObject:self.IPv6Address forKey:@"IPv6Address"];
 	}
 	
 	if (self.IPv6Netmask) {
-		[description setObject:self.IPv6Netmask forKey:@"IPv6Netmask"];
+		[info setObject:self.IPv6Netmask forKey:@"IPv6Netmask"];
 	}
 	
-	return [NSDictionary dictionaryWithDictionary:description];
+	if (self.udpListenPort) {
+		[info setObject:[NSNumber numberWithUnsignedInt:self.udpListenPort] forKey:@"udpListenPort"];
+	}
+	
+	if (self.tcpListenPort) {
+		[info setObject:[NSNumber numberWithUnsignedInt:self.tcpListenPort] forKey:@"tcpListenPort"];
+	}
+		
+	return [NSDictionary dictionaryWithDictionary:info];
 }
 
 
@@ -68,10 +83,13 @@
 		return;
 	}
 	
+	// UDP socket
 	NSError* bindError;
 	[udpSocket bindToPort:port interface:self.identifier error:&bindError];
 	
 	if (bindError != nil) {
+		self.active = NO;
+		
 		THLogErrorTHessage(@"error binding udpSocket %@ %@", self.identifier, [bindError description]);
 		
 		if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
@@ -79,27 +97,47 @@
 		}
 	}
 	
-	
 	NSError* listenError;
 	[udpSocket beginReceiving:&listenError];
 	
 	if (listenError != nil) {
+		self.active = NO;
+		
 		THLogErrorTHessage(@"udpSocket %@ had error %@", self.identifier, [listenError description]);
 		
 		if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
 			[self.delegate THTransportError:self error:listenError];
 		}
 	} else {
-		THLogInfoMessage(@"udpSocket %@ now listening on port %d", self.identifier, udpSocket.localPort);
-		
-		if ([self.delegate respondsToSelector:@selector(THTransportReady:)]) {
-			[self.delegate performSelector:@selector(THTransportReady:) withObject:self afterDelay:THTransportInitDelay];
-		}
+		self.udpListenPort = udpSocket.localPort;
+		THLogInfoMessage(@"udpSocket %@ now listening on port %d", self.identifier, self.udpListenPort);
 	}
 	
-	self.addressDescription = [NSString stringWithFormat:@"ipv4:%@:%d", self.IPv4Address, udpSocket.localPort];
-	if (self.IPv6Address) {
-		self.addressDescription = [NSString stringWithFormat:@"%@ ipv6:%@:%d", self.addressDescription, self.IPv6Address, udpSocket.localPort];
+	
+	// TCP socket
+	
+	// if port is specified, listen on that port, otherwise listen on the same port as udpSocket
+	if (port > 0) {
+		[tcpSocket acceptOnInterface:self.identifier port:port error:&listenError];
+	} else {
+		[tcpSocket acceptOnInterface:self.identifier port:self.udpListenPort error:&listenError];
+	}
+	
+	if (listenError != nil) {
+		self.active = NO;
+		
+		THLogErrorTHessage(@"tcpSocket %@ had error %@", self.identifier, [listenError description]);
+		
+		if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
+			[self.delegate THTransportError:self error:listenError];
+		}		
+	} else {
+		self.tcpListenPort = [tcpSocket localPort];
+		THLogInfoMessage(@"tcpSocket %@ now listening on port %d", self.identifier, self.tcpListenPort);
+	}
+	
+	if (self.active && [self.delegate respondsToSelector:@selector(THTransportReady:)]) {
+		[self.delegate performSelector:@selector(THTransportReady:) withObject:self afterDelay:THTransportInitDelay];
 	}
 }
 
@@ -109,15 +147,58 @@
 	[udpSocket closeAfterSending];
 }
 
+- (NSArray *)paths {
+	NSMutableArray* paths = [NSMutableArray array];
+	
+	THPath* path;
 
-- (THPipe *)pipeFromPath:(THPath *)path
-{
+	if ([self.enabledPathTypes containsObject:@"udp4"] && self.udpListenPort > 0 && self.IPv4Address) {
+		path = [[THPath alloc] init];
+		path.type = @"udp4";
+		path.ip = self.IPv4Address;
+		path.port = self.udpListenPort;
+		[paths addObject:path];
+	}
+	
+	if ([self.enabledPathTypes containsObject:@"udp6"] && self.udpListenPort > 0 && self.IPv4Address) {
+		path = [[THPath alloc] init];
+		path.type = @"udp6";
+		path.ip = self.IPv6Address;
+		path.port = self.udpListenPort;
+		[paths addObject:path];
+	}
+	
+	if ([self.enabledPathTypes containsObject:@"tcp4"] && self.tcpListenPort > 0 && self.IPv6Address) {
+		path = [[THPath alloc] init];
+		path.type = @"tcp4";
+		path.ip = self.IPv4Address;
+		path.port = self.tcpListenPort;
+		[paths addObject:path];
+	}
+	
+	if ([self.enabledPathTypes containsObject:@"tcp6"] && self.udpListenPort > 0 && self.IPv6Address) {
+		path = [[THPath alloc] init];
+		path.type = @"tcp6";
+		path.ip = self.IPv6Address;
+		path.port = self.tcpListenPort;
+		[paths addObject:path];
+	}
+	
+	return paths;
+}
+
+- (THPipe *)pipeFromPath:(THPath *)path {
 	THLogMethodCall
 	
 	if ([self.supportedPathTypes containsObject:path.type]) {
-		THPipe* pipe = [[THPipe alloc] init];
+		THPipeNetworkAdapter* pipe = [[THPipeNetworkAdapter alloc] init];
 		
-		// TODO pipe setup
+		pipe.path = path;
+		pipe.type = [self.type stringByAppendingFormat:@".%@", path.type];
+		pipe.transport = self;
+		
+		// TODO some sort of notification for cleanup of old/dead pipes within a transport
+		[self.pipes addObject:pipe];
 		
 		return pipe;
 	}
@@ -132,34 +213,66 @@
 
 
 
+// UDP socket
+- (void)udpSend:(NSData *)data ip:(NSString *)ip port:(uint16_t)port {
+	THLogMethodCall // TODO just for debug, remove later
+	
+	[udpSocket sendData:data toHost:ip port:port withTimeout:-1 tag:0];
+}
 
+
+
+
+
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext {
+	THLogMethodCall
+	
+	NSString* ip;
+	uint16_t port;
+	[GCDAsyncUdpSocket getHost:&ip port:&port fromAddress:address];
+	
+	for (THPipe* pipe in self.pipes) {
+		// match pipe to source
+		if ([pipe.path.ip isEqualToString:ip] && pipe.path.port == port) {
+			
+		}
+	}
+	
+	// TODO pipe doesnt exist, implement new endpoint logic
+}
 
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didConnectToAddress:(NSData *)address {
-	
+	THLogMethodCall
 }
 
 
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotConnect:(NSError *)error {
-	
+	THLogMethodCall
 }
 
 
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag {
-	
+	THLogMethodCall
 }
 
 
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error {
-	
+	THLogMethodCall
 }
-
-
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext {
-	
-}
-
 
 - (void)udpSocketDidClose:(GCDAsyncUdpSocket *)sock withError:(NSError *)error {
+	THLogMethodCall
+}
+
+
+// TCP socket
+
+- (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket
+{
+	
+}
+
+- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err {
 	
 }
 

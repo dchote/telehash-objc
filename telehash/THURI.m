@@ -14,8 +14,7 @@ uint16_t const THDefaultPort = 42424;
 
 @implementation THURI
 
-- (id)init
-{
+- (id)init {
 	self = [super init];
 	
 	self.hashname = nil;
@@ -24,8 +23,7 @@ uint16_t const THDefaultPort = 42424;
 	return self;
 }
 
-+ (THURI *)initWithLinkURI:(NSString *)link
-{
++ (THURI *)initWithLinkURI:(NSString *)link {
 	THLogMethodCall
 	
 	NSURLComponents* URIComponents = [NSURLComponents componentsWithString:link];
@@ -41,7 +39,7 @@ uint16_t const THDefaultPort = 42424;
 		
 		// TODO determine if host is an ipv6 representation
 		path.type = @"udp4";
-		path.host = URIComponents.host;
+		path.ip = URIComponents.host;
 		if (URIComponents.port) {
 			path.port = [URIComponents.port intValue];
 		} else {
@@ -54,7 +52,7 @@ uint16_t const THDefaultPort = 42424;
 		
 		path = [[THPath alloc] init];
 		path.type = @"tcp4";
-		path.host = URIComponents.host;
+		path.ip = URIComponents.host;
 		if (URIComponents.port) {
 			path.port = [URIComponents.port intValue];
 		} else {

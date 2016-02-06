@@ -11,8 +11,7 @@
 
 @implementation THEndpoint
 
-- (id)init
-{
+- (id)init {
 	self = [super init];
 	
 	self.mesh = nil;
@@ -26,8 +25,7 @@
 }
 
 
-+ (THEndpoint *)initWithMesh:(THMesh *)mesh
-{
++ (THEndpoint *)initWithMesh:(THMesh *)mesh {
 	THLogMethodCall
 	
 	THEndpoint* endpoint = [[THEndpoint alloc] init];
@@ -36,8 +34,7 @@
 	return endpoint;
 }
 
-+ (THEndpoint *)endpointFromJSON:(NSData *)json withMesh:(THMesh *)mesh
-{
++ (THEndpoint *)endpointFromJSON:(NSData *)json withMesh:(THMesh *)mesh {
 	THLogMethodCall
 	
 	THEndpoint* endpoint = [THEndpoint initWithMesh:mesh];
@@ -47,8 +44,7 @@
 	return endpoint;
 }
 
-+ (THEndpoint *)endpointFromURI:(THURI *)uri withMesh:(THMesh *)mesh
-{
++ (THEndpoint *)endpointFromURI:(THURI *)uri withMesh:(THMesh *)mesh {
 	THLogMethodCall
 	
 	if (uri) {
@@ -65,8 +61,7 @@
 
 
 
-- (void)generatePipesFromPaths:(NSArray *)paths
-{
+- (void)generatePipesFromPaths:(NSArray *)paths {
 	THLogMethodCall
 	
 	// TODO track already created pipes by URI key or something, so dont create duups
@@ -74,10 +69,11 @@
 	for (THPath* path in paths) {
 		for (THTransport* transport in self.mesh.activeTransports) {
 			// check to see if the transport supports the path type
-			if ([transport.supportedPathTypes containsObject:path.type]) {
+			if (transport.active && [transport.enabledPathTypes	containsObject:path.type]) {
 				THPipe* pipe = [transport pipeFromPath:path];
 				
 				if (pipe && ![self.pipes containsObject:pipe]) {
+					THLogDebugMessage(@"adding pipe %@ to endpoint %@", pipe.info, self.remoteHashname.hashname);
 					[self.pipes addObject:pipe];
 				}
 			}

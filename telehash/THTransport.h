@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GCDAsyncUdpSocket.h"
+#import "GCDAsyncSocket.h"
 
 #import "THLog.h"
 #import "THPipe.h"
@@ -32,14 +33,19 @@ extern NSInteger const THTransportTimeout;
 @property BOOL active;
 @property NSString* identifier;
 @property NSString* name;
-@property NSString* addressDescription;
+@property NSString* type;
+
+@property (readonly) NSString* addressDescription;
 
 @property int MTU;
 
 @property NSArray* supportedPathTypes;
+@property NSMutableArray* enabledPathTypes;
+
+@property (readonly) NSArray* paths;
+@property (readonly) NSDictionary* info;
 
 - (void)shutdown;
-- (NSDictionary *)description;
 
 - (THPipe *)pipeFromPath:(THPath *)path;
 @end
