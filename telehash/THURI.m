@@ -7,7 +7,7 @@
 //
 
 #import "THURI.h"
-
+#import "THTransportNetworkAdapter.h"
 #import "MF_Base32Additions.h"
 
 uint16_t const THDefaultPort = 42424;
@@ -37,8 +37,21 @@ uint16_t const THDefaultPort = 42424;
 	} else {
 		THPath* path = [[THPath alloc] init];
 		
-		// TODO determine if host is an ipv6 representation
-		path.type = @"udp4";
+		NSString* hostAddress = URIComponents.host;
+		NSString* pathTypeSuffix = @"";
+		
+		if ([THTransportNetworkAdapter determineHostType:hostAddress] == THHostHostname) {
+			// resolve hostAddress
+		}
+		
+		// determine if the hostAddress is ipv4 or ipv6
+		if ([THTransportNetworkAdapter determineHostType:hostAddress] == THHostIPv4Address) {
+			pathTypeSuffix = @"4";
+		} else if ([THTransportNetworkAdapter determineHostType:hostAddress] == THHostIPv6Address) {
+			pathTypeSuffix = @"6";
+		}
+		
+		path.type = [@"udp" stringByAppendingString:pathTypeSuffix];
 		path.ip = URIComponents.host;
 		if (URIComponents.port) {
 			path.port = [URIComponents.port intValue];
@@ -46,12 +59,12 @@ uint16_t const THDefaultPort = 42424;
 			path.port = THDefaultPort;
 		}
 		
-		// add udp4 to uri paths array
+		// add udp to uri paths array
 		[uri.paths addObject:path];
 		
 		
 		path = [[THPath alloc] init];
-		path.type = @"tcp4";
+		path.type = [@"tcp" stringByAppendingString:pathTypeSuffix];
 		path.ip = URIComponents.host;
 		if (URIComponents.port) {
 			path.port = [URIComponents.port intValue];
@@ -59,7 +72,7 @@ uint16_t const THDefaultPort = 42424;
 			path.port = THDefaultPort;
 		}
 		
-		// add tcp4 to uri paths array
+		// add tcp to uri paths array
 		[uri.paths addObject:path];
 		
 		
