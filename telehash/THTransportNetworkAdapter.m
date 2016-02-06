@@ -234,7 +234,8 @@
 	for (THPipe* pipe in self.pipes) {
 		// match pipe to source
 		if ([pipe.path.ip isEqualToString:ip] && pipe.path.port == port) {
-			
+			[pipe recieved:data];
+			return;
 		}
 	}
 	

@@ -68,10 +68,10 @@ uint16_t const THDefaultPort = 42424;
 		for (NSURLQueryItem* item in URIComponents.queryItems) {
 			if ([item.name containsString:@"cs"]) {
 				unsigned char CSID = [E3X CSIDFromString:item.name];
-				NSData* key = [NSData dataWithBase32String:item.value];
+				NSData* keyData = [NSData dataWithBase32String:item.value];
 				
-				if (CSID != 0x0 && key) {
-					[uri.hashname.keys setObject:key forKey:[E3X CSIDString:CSID]];
+				if (CSID != 0x0 && keyData) {
+					[uri.hashname.keys setObject:keyData forKey:[E3X CSIDString:CSID]];
 				}
 			}
 			// TODO Path, CSK handling

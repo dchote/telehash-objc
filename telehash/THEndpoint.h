@@ -36,6 +36,7 @@ typedef enum {
 
 
 + (THEndpoint *)initWithMesh:(THMesh *)mesh;
++ (THEndpoint *)endpointFromFile:(NSString *)filePath withMesh:(THMesh *)mesh;
 + (THEndpoint *)endpointFromJSON:(NSData *)json withMesh:(THMesh *)mesh;
 + (THEndpoint *)endpointFromURI:(THURI *)uri withMesh:(THMesh *)mesh;
 

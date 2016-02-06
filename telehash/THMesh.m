@@ -86,16 +86,40 @@ NSString* const THMeshStateChange = @"THMeshStateChange";
 
 
 - (void)establishRouterLinks {
+	// manually specified router links
+	THEndpoint* routerEndpoint;
+	
 	for (NSString* uriString in self.config.routerLinks) {
 		THURI* uri = [THURI initWithLinkURI:uriString];
 		
-		THEndpoint* routerEndpoint = [THEndpoint endpointFromURI:uri withMesh:self];
+		routerEndpoint = [THEndpoint endpointFromURI:uri withMesh:self];
 		
 		if (routerEndpoint.remoteHashname && routerEndpoint.status != THEndpointStatusError) {
 			THLogDebugMessage(@"Adding router endpoint with hashname %@ to mesh", routerEndpoint.remoteHashname.hashname);
 			[self.endpoints setObject:routerEndpoint forKey:routerEndpoint.remoteHashname.hashname];
 		} else {
 			THLogErrorTHessage(@"Unable to add router with URI %@ to mesh", uriString);
+		}
+	}
+	
+	// bundled router json files
+	NSString* bundleRoutersPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"routers"];
+	NSFileManager* fileManager = [NSFileManager defaultManager];
+	NSDirectoryEnumerator* dirEnumerator = [fileManager enumeratorAtPath:bundleRoutersPath];
+	
+	NSString *fileName;
+	while ((fileName = [dirEnumerator nextObject])) {
+		if ([[fileName pathExtension] isEqualToString: @"json"]) {
+			NSString* routerFilePath = [bundleRoutersPath stringByAppendingPathComponent:fileName];
+			
+			routerEndpoint = [THEndpoint endpointFromFile:routerFilePath withMesh:self];
+			
+			if (routerEndpoint.remoteHashname && routerEndpoint.status != THEndpointStatusError) {
+				THLogDebugMessage(@"Adding router endpoint with hashname %@ to mesh", routerEndpoint.remoteHashname.hashname);
+				[self.endpoints setObject:routerEndpoint forKey:routerEndpoint.remoteHashname.hashname];
+			} else {
+				THLogErrorTHessage(@"Unable to add router file %@ to mesh", fileName);
+			}
 		}
 	}
 }

@@ -50,7 +50,7 @@
 		if (hashnameRollup.length > 0) {
 			// we got something, lets cache the base32 string
 			self.hashnameCache = [hashnameRollup base32String];
-			THLogDebugMessage(@"HASHNAME IS %@", self.hashnameCache);
+			THLogDebugMessage(@"calculated hashname of %@", self.hashnameCache);
 		}
 	}
 	

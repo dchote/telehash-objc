@@ -42,6 +42,7 @@
 		65956C9D1C64EC1A009E5903 /* THPipeNetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65956C9B1C64EC1A009E5903 /* THPipeNetworkAdapter.m */; };
 		65956CA01C64EC27009E5903 /* THPipeSerial.h in Headers */ = {isa = PBXBuildFile; fileRef = 65956C9E1C64EC27009E5903 /* THPipeSerial.h */; };
 		65956CA11C64EC27009E5903 /* THPipeSerial.m in Sources */ = {isa = PBXBuildFile; fileRef = 65956C9F1C64EC27009E5903 /* THPipeSerial.m */; };
+		65956CA91C666DDD009E5903 /* routers in Resources */ = {isa = PBXBuildFile; fileRef = 65956CA81C666DDD009E5903 /* routers */; };
 		65A53B9D1B7D160D00150176 /* THMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 65A53B9B1B7D160D00150176 /* THMesh.h */; };
 		65A53B9E1B7D160D00150176 /* THMesh.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A53B9C1B7D160D00150176 /* THMesh.m */; };
 		65A53BA11B7D164600150176 /* THTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 65A53B9F1B7D164600150176 /* THTransport.h */; };
@@ -139,6 +140,7 @@
 		65956C9B1C64EC1A009E5903 /* THPipeNetworkAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPipeNetworkAdapter.m; sourceTree = "<group>"; };
 		65956C9E1C64EC27009E5903 /* THPipeSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THPipeSerial.h; sourceTree = "<group>"; };
 		65956C9F1C64EC27009E5903 /* THPipeSerial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THPipeSerial.m; sourceTree = "<group>"; };
+		65956CA81C666DDD009E5903 /* routers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = routers; sourceTree = SOURCE_ROOT; };
 		65A53B9B1B7D160D00150176 /* THMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMesh.h; sourceTree = "<group>"; };
 		65A53B9C1B7D160D00150176 /* THMesh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMesh.m; sourceTree = "<group>"; };
 		65A53B9F1B7D164600150176 /* THTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTransport.h; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 				65A53BD01B7D199000150176 /* MainMenu.xib */,
 				65E7B8621B87AD340039DF2D /* Debug.xib */,
 				65FA36601C5E96F300337EB7 /* TWG Icons.xcassets */,
+				65956CA81C666DDD009E5903 /* routers */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65956CA91C666DDD009E5903 /* routers in Resources */,
 				65FA36611C5E96F300337EB7 /* TWG Icons.xcassets in Resources */,
 				65A53BCF1B7D199000150176 /* Images.xcassets in Resources */,
 				65A53BD21B7D199000150176 /* MainMenu.xib in Resources */,
