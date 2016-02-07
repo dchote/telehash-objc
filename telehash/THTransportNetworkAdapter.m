@@ -9,7 +9,6 @@
 #import "THTransportNetworkAdapter.h"
 
 #import "THPipeNetworkAdapter.h"
-#include <arpa/inet.h>
 
 @implementation THTransportNetworkAdapter {
 	GCDAsyncUdpSocket* udpSocket;
@@ -40,32 +39,6 @@
 	
 	return NO;
 }
-
-+ (THHostType)determineHostType:(NSString *)host {
-	// strip off any IPv6 wrapping
-	host = [[host componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"]["]] componentsJoinedByString:@""];
-	
-	const char* utf8 = [host UTF8String];
-	
-	// Check valid IPv4.
-	struct in_addr dst;
-	int success = inet_pton(AF_INET, utf8, &(dst.s_addr));
-	
-	if (success == 1) {
-		return THHostIPv4Address;
-	} else {
-		// Check valid IPv6.
-		struct in6_addr dst6;
-		success = inet_pton(AF_INET6, utf8, &dst6);
-		
-		if (success == 1) {
-			return THHostIPv6Address;
-		}
-	}
-	
-	return THHostHostname;
-}
-
 
 - (NSDictionary *)info {
 	NSMutableDictionary* info = [NSMutableDictionary dictionaryWithDictionary:[super info]];

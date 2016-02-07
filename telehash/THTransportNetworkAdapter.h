@@ -11,12 +11,6 @@
 #import "THLog.h"
 #import "THTransport.h"
 
-typedef enum {
-	THHostIPv4Address,
-	THHostIPv6Address,
-	THHostHostname
-} THHostType;
-
 @interface THTransportNetworkAdapter : THTransport <GCDAsyncUdpSocketDelegate>
 
 @property NSString* interfaceType;
@@ -36,7 +30,6 @@ typedef enum {
 
 
 - (BOOL)hasIPAddress;
-+ (THHostType)determineHostType:(NSString *)host;
 - (void)bindToPort:(uint16_t)port;
 
 

@@ -16,6 +16,12 @@
 #import "THTransportSerial.h"
 #import "THTransportMultipeerConnectivity.h"
 
+typedef enum {
+	THHostIPv4Address,
+	THHostIPv6Address,
+	THHostHostname
+} THHostType;
+
 extern NSString* const THTransportStateRefreshRequest;
 extern NSString* const THTransportStateChangedNotification;
 
@@ -24,5 +30,9 @@ extern NSString* const THTransportStateChangedNotification;
 
 @property NSMutableDictionary* allTransports;
 
+
++ (THHostType)determineHostType:(NSString *)host;
+
 - (NSArray *)getAllTransports;
+
 @end

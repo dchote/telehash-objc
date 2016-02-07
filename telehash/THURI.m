@@ -7,7 +7,7 @@
 //
 
 #import "THURI.h"
-#import "THTransportNetworkAdapter.h"
+#import "THTransportAssistant.h"
 #import "MF_Base32Additions.h"
 
 uint16_t const THDefaultPort = 42424;
@@ -40,14 +40,14 @@ uint16_t const THDefaultPort = 42424;
 		NSString* hostAddress = URIComponents.host;
 		NSString* pathTypeSuffix = @"";
 		
-		if ([THTransportNetworkAdapter determineHostType:hostAddress] == THHostHostname) {
+		if ([THTransportAssistant determineHostType:hostAddress] == THHostHostname) {
 			// resolve hostAddress
 		}
 		
 		// determine if the hostAddress is ipv4 or ipv6
-		if ([THTransportNetworkAdapter determineHostType:hostAddress] == THHostIPv4Address) {
+		if ([THTransportAssistant determineHostType:hostAddress] == THHostIPv4Address) {
 			pathTypeSuffix = @"4";
-		} else if ([THTransportNetworkAdapter determineHostType:hostAddress] == THHostIPv6Address) {
+		} else if ([THTransportAssistant determineHostType:hostAddress] == THHostIPv6Address) {
 			pathTypeSuffix = @"6";
 		}
 		
