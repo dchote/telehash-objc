@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import <SystemConfiguration/SystemConfiguration.h>
+#import <netinet/in.h>
+
 #import "ORSSerialPortManager.h"
 
 #import "THLog.h"
@@ -25,14 +28,18 @@ typedef enum {
 extern NSString* const THTransportStateRefreshRequest;
 extern NSString* const THTransportStateChangedNotification;
 
+extern NSString* const THTransportReachabilityStateChanged;
+
 
 @interface THTransportAssistant : NSObject
 
 @property NSMutableDictionary* allTransports;
-
+@property BOOL suppressNotifications;
 
 + (THHostType)determineHostType:(NSString *)host;
 
+- (void)refreshTransportState;
 - (NSArray *)getAllTransports;
+- (void)setupGlobalReachability;
 
 @end

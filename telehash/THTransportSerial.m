@@ -93,12 +93,16 @@
 }
 
 - (void)serialPortWasOpened:(ORSSerialPort *)serialPort {
+	self.status = THTransportStatusReady;
+
 	if ([self.delegate respondsToSelector:@selector(THTransportReady:)]) {
 		[self.delegate performSelector:@selector(THTransportReady:) withObject:self afterDelay:THTransportInitDelay];
 	}
 }
 
 - (void)serialPort:(ORSSerialPort *)serialPort didEncounterError:(NSError *)error {
+	self.status = THTransportStatusError;
+
 	if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
 		[self.delegate THTransportError:self error:error];
 	}
@@ -115,6 +119,7 @@
 - (void)serialPortWasRemovedFromSystem:(ORSSerialPort *)serialPort {
 	
 }
+
 
 
 @end

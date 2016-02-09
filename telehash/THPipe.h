@@ -33,7 +33,7 @@ typedef enum {
 
 @property THPipeStatus status;
 
-@property (readonly) NSDictionary* info;
+@property (nonatomic, readonly) NSDictionary* info;
 
 @property NSUInteger lastInboundActivity;
 @property NSUInteger lastOutboundActivity;

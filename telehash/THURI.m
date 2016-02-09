@@ -48,6 +48,8 @@ uint16_t const THDefaultPort = 42424;
 		if ([THTransportAssistant determineHostType:hostAddress] == THHostIPv4Address) {
 			pathTypeSuffix = @"4";
 		} else if ([THTransportAssistant determineHostType:hostAddress] == THHostIPv6Address) {
+			// strip off brackets
+			hostAddress = [[hostAddress componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"]["]] componentsJoinedByString:@""];
 			pathTypeSuffix = @"6";
 		}
 		

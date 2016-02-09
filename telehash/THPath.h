@@ -19,8 +19,8 @@
 
 @property NSString* url; // only when type==http
 
-@property (readonly) NSDictionary* info;
-@property (readonly) NSString* uriString;
+@property (nonatomic, readonly) NSDictionary* info;
+@property (nonatomic, readonly) NSString* uriString;
 
 
 @end

@@ -1,21 +1,26 @@
 {
-	"hashname": "dnnoqfhxvotbwu6hjsjtgbijjuc6heobdiqh32h7i3wk3oh6zkuq",
-	"keys": {
-		"1a": "am4nohyyofgfxtv63ljghkmtfwq6fwwbki",
-		"2a": "gcbacirqbudaskugjcdpodibaeaqkaadqiaq6abqqiaquaucaeaqbugc5exov22ismazaseoqo624vwl5qxjjlmerbt5sstdccygc3negfjmqinyaxrp6sgwlcldacay67qhtd7c4gcg7ye2azuu3h5vwwfmxjpwplpd4vtpwjfw4nuu6ppc66feoj3fizyongfg5dhjb6fmbjdnrboxuvszh322ta53tzvfbufhplsgn7rivgywp2kzczqs3zblyst35yifvux4mwzrcpwt4h6zd4jmqzulmbfqdw5odkocfoxlqiickb3fikcyyucom2pfuhmf5w2xogtf5ef4hc77j2qg3535ffhhbhpeommlzjabaxfjgrsri5ilahfdtxzfjezgcpdbbjy5lvgm35qdcbttnrofktc5qrnovbfvwziigq7d5fgmtdjn4u7zrpgwe2qnat7w2jycamaqaai",
-		"3a": "7bmkxdqsxorkfrf7dq5dnnxdl4aaeyyv7ghnk5pqchldkh5r3v5a"
-	},
-	"paths": [
+"hashname": "dnnoqfhxvotbwu6hjsjtgbijjuc6heobdiqh32h7i3wk3oh6zkuq",
+"paths": [
 	{
+		"type": "udp4",
 		"ip": "172.20.0.203",
-		"port": 58144,
-		"type": "udp4"
+		"port": 42425
 	},
 	{
+		"type": "udp4",
 		"ip": "173.163.173.178",
-	"port": 58144,
-	"type": "udp4"
+		"port": 42425
+	},
+	{
+		"type": "tcp4",
+		"ip": "172.20.0.203",
+		"port": 33863
 	}
-	],
-	"router": true
+],
+"keys": {
+	"1a": "am4nohyyofgfxtv63ljghkmtfwq6fwwbki",
+	"2a": "gcbacirqbudaskugjcdpodibaeaqkaadqiaq6abqqiaquaucaeaqbugc5exov22ismazaseoqo624vwl5qxjjlmerbt5sstdccygc3negfjmqinyaxrp6sgwlcldacay67qhtd7c4gcg7ye2azuu3h5vwwfmxjpwplpd4vtpwjfw4nuu6ppc66feoj3fizyongfg5dhjb6fmbjdnrboxuvszh322ta53tzvfbufhplsgn7rivgywp2kzczqs3zblyst35yifvux4mwzrcpwt4h6zd4jmqzulmbfqdw5odkocfoxlqiickb3fikcyyucom2pfuhmf5w2xogtf5ef4hc77j2qg3535ffhhbhpeommlzjabaxfjgrsri5ilahfdtxzfjezgcpdbbjy5lvgm35qdcbttnrofktc5qrnovbfvwziigq7d5fgmtdjn4u7zrpgwe2qnat7w2jycamaqaai",
+	"3a": "7bmkxdqsxorkfrf7dq5dnnxdl4aaeyyv7ghnk5pqchldkh5r3v5a"
+},
+"router": true
 }

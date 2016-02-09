@@ -14,6 +14,14 @@
 #import "THPipe.h"
 #import "THPath.h"
 
+
+typedef enum {
+	THTransportStatusStartup,
+	THTransportStatusReady,
+	THTransportStatusError
+} THTransportStatus;
+
+
 extern NSInteger const THTransportInitDelay;
 extern NSInteger const THTransportTimeout;
 
@@ -34,6 +42,7 @@ extern NSInteger const THTransportTimeout;
 @property NSString* identifier;
 @property NSString* name;
 @property NSString* type;
+@property THTransportStatus status;
 
 @property (readonly) NSString* addressDescription;
 
@@ -42,8 +51,8 @@ extern NSInteger const THTransportTimeout;
 @property NSArray* supportedPathTypes;
 @property NSMutableArray* enabledPathTypes;
 
-@property (readonly) NSArray* paths;
-@property (readonly) NSDictionary* info;
+@property (nonatomic, readonly) NSArray* paths;
+@property (nonatomic, readonly) NSDictionary* info;
 
 - (void)shutdown;
 

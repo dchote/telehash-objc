@@ -27,6 +27,10 @@
 		self.supportedPathTypes = [NSArray arrayWithObjects:@"udp4", @"tcp4", @"udp6", @"tcp6", nil];
 		
 		self.pipes = [NSMutableArray array];
+		
+		self.IPv4Address = nil;
+		self.IPv6Address = nil;
+		
 	}
 	
 	return self;
@@ -85,61 +89,80 @@
 		return;
 	}
 	
-	// UDP socket
 	NSError* bindError;
-	[udpSocket bindToPort:port interface:self.identifier error:&bindError];
-	
-	if (bindError != nil) {
-		self.active = NO;
-		
-		THLogErrorTHessage(@"error binding udpSocket %@ %@", self.identifier, [bindError description]);
-		
-		if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
-			[self.delegate THTransportError:self error:bindError];
-		}
-	}
-	
 	NSError* listenError;
-	[udpSocket beginReceiving:&listenError];
 	
-	if (listenError != nil) {
-		self.active = NO;
-		
-		THLogErrorTHessage(@"udpSocket %@ had error %@", self.identifier, [listenError description]);
-		
-		if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
-			[self.delegate THTransportError:self error:listenError];
-		}
+	if (udpSocket.localPort) {
+		THLogNoticeMessage(@"transport %@ is already bound to port %d", self.identifier, udpSocket.localPort);
 	} else {
-		self.udpListenPort = udpSocket.localPort;
-		THLogInfoMessage(@"udpSocket %@ now listening on port %d", self.identifier, self.udpListenPort);
+		// UDP socket
+		
+		[udpSocket bindToPort:port interface:self.identifier error:&bindError];
+		
+		if (bindError != nil) {
+			self.active = NO;
+			self.status = THTransportStatusError;
+
+			THLogErrorTHessage(@"error binding udpSocket %@ %@", self.identifier, [bindError description]);
+			
+			if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
+				[self.delegate THTransportError:self error:bindError];
+			}
+		}
+		
+		
+		[udpSocket beginReceiving:&listenError];
+		
+		if (listenError != nil) {
+			self.active = NO;
+			self.status = THTransportStatusError;
+
+			THLogErrorTHessage(@"udpSocket %@ had error %@", self.identifier, [listenError description]);
+			
+			if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
+				[self.delegate THTransportError:self error:listenError];
+			}
+		} else {
+			self.udpListenPort = udpSocket.localPort;
+			THLogInfoMessage(@"udpSocket %@ now listening on port %d", self.identifier, self.udpListenPort);
+		}
 	}
+	
 	
 	
 	// TCP socket
-	
-	// if port is specified, listen on that port, otherwise listen on the same port as udpSocket
-	if (port > 0) {
-		[tcpSocket acceptOnInterface:self.identifier port:port error:&listenError];
+	if (tcpSocket.localPort) {
+		THLogNoticeMessage(@"transport %@ is already bound to port %d", self.identifier, udpSocket.localPort);
 	} else {
-		[tcpSocket acceptOnInterface:self.identifier port:self.udpListenPort error:&listenError];
+		
+		// if port is specified, listen on that port, otherwise listen on the same port as udpSocket
+		if (port > 0) {
+			[tcpSocket acceptOnInterface:self.identifier port:port error:&listenError];
+		} else {
+			[tcpSocket acceptOnInterface:self.identifier port:self.udpListenPort error:&listenError];
+		}
+		
+		if (listenError != nil) {
+			self.active = NO;
+			self.status = THTransportStatusError;
+			
+			THLogErrorTHessage(@"tcpSocket %@ had error %@", self.identifier, [listenError description]);
+			
+			if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
+				[self.delegate THTransportError:self error:listenError];
+			}		
+		} else {
+			self.tcpListenPort = [tcpSocket localPort];
+			THLogInfoMessage(@"tcpSocket %@ now listening on port %d", self.identifier, self.tcpListenPort);
+		}
 	}
 	
-	if (listenError != nil) {
-		self.active = NO;
+	if (self.active && self.status == THTransportStatusStartup) {
+		self.status = THTransportStatusReady;
 		
-		THLogErrorTHessage(@"tcpSocket %@ had error %@", self.identifier, [listenError description]);
-		
-		if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
-			[self.delegate THTransportError:self error:listenError];
-		}		
-	} else {
-		self.tcpListenPort = [tcpSocket localPort];
-		THLogInfoMessage(@"tcpSocket %@ now listening on port %d", self.identifier, self.tcpListenPort);
-	}
-	
-	if (self.active && [self.delegate respondsToSelector:@selector(THTransportReady:)]) {
-		[self.delegate performSelector:@selector(THTransportReady:) withObject:self afterDelay:THTransportInitDelay];
+		if ([self.delegate respondsToSelector:@selector(THTransportReady:)]) {
+			[self.delegate performSelector:@selector(THTransportReady:) withObject:self afterDelay:THTransportInitDelay];
+		}
 	}
 }
 
@@ -162,7 +185,7 @@
 		[paths addObject:path];
 	}
 	
-	if ([self.enabledPathTypes containsObject:@"udp6"] && self.udpListenPort > 0 && self.IPv4Address) {
+	if ([self.enabledPathTypes containsObject:@"udp6"] && self.udpListenPort > 0 && self.IPv6Address) {
 		path = [[THPath alloc] init];
 		path.type = @"udp6";
 		path.ip = self.IPv6Address;
@@ -170,7 +193,7 @@
 		[paths addObject:path];
 	}
 	
-	if ([self.enabledPathTypes containsObject:@"tcp4"] && self.tcpListenPort > 0 && self.IPv6Address) {
+	if ([self.enabledPathTypes containsObject:@"tcp4"] && self.tcpListenPort > 0 && self.IPv4Address) {
 		path = [[THPath alloc] init];
 		path.type = @"tcp4";
 		path.ip = self.IPv4Address;
@@ -208,6 +231,7 @@
 	THLogErrorTHessage(@"transport with identifier %@ does not support path type %@", self.identifier, path.type);
 	return nil;
 }
+
 
 
 

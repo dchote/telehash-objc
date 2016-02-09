@@ -20,6 +20,8 @@
 @property IBOutlet NSTableView* packetLog;
 
 
+- (IBAction)refreshTransports:(id)sender;
+
 + (DebugController *)sharedController;
 
 - (void)refreshInterfaceList;

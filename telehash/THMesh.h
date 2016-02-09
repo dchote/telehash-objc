@@ -51,6 +51,7 @@ typedef enum {
 
 
 - (void)bootstrapWithConfig:(THMeshConfiguration *)config;
+- (void)evaluateTransports;
 - (void)shutdown;
 - (void)establishRouterLinks;
 @end

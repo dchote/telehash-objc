@@ -35,17 +35,29 @@ NSString* const THMeshStateChange = @"THMeshStateChange";
 	
 	self.config = config;
 	
+	[self evaluateTransports];
+	self.transportAssistant.suppressNotifications = NO; // enable notifications to be generated
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityStateChange) name:THTransportReachabilityStateChanged object:nil];
+	
+	// do the reachability stuff
+	[self.transportAssistant setupGlobalReachability];
+}
+
+- (void)evaluateTransports {
 	// determine transports
 	for (THTransport* transport in [self.transportAssistant getAllTransports]) {
-		if (config.enabledTransportIDs == nil || [config.enabledTransportIDs containsObject:transport.identifier]) {
-			THLogDebugMessage(@"Adding transport %@ with properties %@ to active transport list.", transport.identifier, transport.info);
-			[self.transports addObject:transport];
+		if (self.config.enabledTransportIDs == nil || [self.config.enabledTransportIDs containsObject:transport.identifier]) {
 			
-			transport.delegate = self;
+			if (![self.transports containsObject:transport]) {
+				THLogDebugMessage(@"Adding transport %@ with properties %@ to active transport list.", transport.identifier, transport.info);
+				[self.transports addObject:transport];
+				transport.delegate = self;
+			}
 			
 			// if we are restricting path types, inform transports
-			if (config.enabledTransportPathTypes) {
-				for (NSString* pathType in config.enabledTransportPathTypes) {
+			if (self.config.enabledTransportPathTypes) {
+				for (NSString* pathType in self.config.enabledTransportPathTypes) {
 					if ([transport.supportedPathTypes containsObject:pathType]) {
 						[transport.enabledPathTypes addObject:pathType];
 					}
@@ -56,24 +68,18 @@ NSString* const THMeshStateChange = @"THMeshStateChange";
 			
 			// initialize each transport type accordingly
 			if ([transport isKindOfClass:[THTransportNetworkAdapter class]]) {
-				[(THTransportNetworkAdapter*)transport bindToPort:config.networkListenPort];
+				[(THTransportNetworkAdapter*)transport bindToPort:self.config.networkListenPort];
 				
 				
 			} else if ([transport isKindOfClass:[THTransportSerial class]]) {
-				NSNumber* baudRate = [config.serialBaudRates valueForKey:transport.identifier];
+				NSNumber* baudRate = [self.config.serialBaudRates valueForKey:transport.identifier];
 				if (baudRate != nil) {
 					[(THTransportSerial*)transport setBaudRate:baudRate];
 					[(THTransportSerial*)transport openSerialPort];
 				}
-				
-				
 			}
 		}
 	}
-	
-
-	
-	
 }
 
 - (void)shutdown {
@@ -125,8 +131,14 @@ NSString* const THMeshStateChange = @"THMeshStateChange";
 }
 
 
+- (void)reachabilityStateChange {
+	THLogMethodCall
+	[self evaluateTransports];
+}
+
+
 - (void)THTransportReady:(THTransport *)transport {
-	THLogInfoMessage(@"transport %@ is now ready", transport.identifier);
+	THLogInfoMessage(@"transport %@ is ready", transport.identifier);
 	
 	if (transport.active && ![self.activeTransports containsObject:transport]) {
 		[self.activeTransports addObject:transport];

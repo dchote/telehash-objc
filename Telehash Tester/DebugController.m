@@ -53,6 +53,14 @@
 	[self.interfaceList reloadData];
 }
 
+#pragma -
+#pragma mark IBActions
+
+- (IBAction)refreshTransports:(id)sender {
+	[self.mesh evaluateTransports];
+}
+
+
 
 #pragma -
 #pragma mark OutlineView Delegation

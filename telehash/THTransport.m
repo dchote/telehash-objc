@@ -20,6 +20,7 @@ NSInteger const THTransportTimeout = 30;
 	if (self) {
 		self.active = NO;
 		self.type = @"unknown";
+		self.status = THTransportStatusStartup;
 		self.MTU = 1500;
 		self.supportedPathTypes = [NSArray array];
 		self.enabledPathTypes = [NSMutableArray array];
@@ -33,6 +34,9 @@ NSInteger const THTransportTimeout = 30;
 }
 
 - (NSString *)addressDescription {
+	if (!self.active) {
+		return @"inactive";
+	}
 	
 	NSString* addressDescription = @"";
 	

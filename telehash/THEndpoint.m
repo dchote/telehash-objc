@@ -56,7 +56,10 @@
 	if (json.length > 0) {
 		NSError* error;
 		NSMutableDictionary* jsonDictionary = [NSJSONSerialization JSONObjectWithData:json options:0 error:&error];
-		if (jsonDictionary) {
+		
+		if (error) {
+			THLogErrorTHessage(@"json decode error: %@", [error localizedDescription]);
+		} else if (jsonDictionary) {
 			THHashname* hashname = [[THHashname alloc] init];
 			
 			NSDictionary* keys = [jsonDictionary objectForKey:@"keys"];

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DebugController">
@@ -47,7 +47,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="54" rowSizeStyle="automatic" headerView="uhW-ju-x6W" viewBased="YES" outlineTableColumn="bYr-2E-Bay" id="whk-x3-6zy">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="385.5" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="386" height="0.0"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -375,26 +375,25 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="4ED818BA-A2E9-48FE-BB25-FA20B02E0FDC" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="regular" id="bes-D3-4pA">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="D55B4A60-7F62-4166-B6B9-FE7F6302CBCF" label="Connect" paletteLabel="Connect" id="P5M-Qz-iUZ">
+                    <toolbarItem implicitItemIdentifier="5D797A46-6B2E-4DDC-B041-95BFC8150CC2" label="Refresh Transports" paletteLabel="Refresh Transports" image="NSRefreshTemplate" id="Eto-Ds-DQO">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="34" height="25"/>
-                        <size key="maxSize" width="100" height="25"/>
-                        <segmentedControl key="view" verticalHuggingPriority="750" springLoaded="YES" id="afe-j4-1Ul">
-                            <rect key="frame" x="9" y="14" width="34" height="25"/>
+                        <size key="minSize" width="16" height="19"/>
+                        <size key="maxSize" width="30" height="32"/>
+                        <button key="view" verticalHuggingPriority="750" id="ccY-0A-dYd">
+                            <rect key="frame" x="39" y="14" width="30" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="GWv-gU-Tpk">
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4DY-h8-cKR">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
-                                <segments>
-                                    <segment image="NSAddTemplate" width="32">
-                                        <nil key="label"/>
-                                    </segment>
-                                </segments>
-                            </segmentedCell>
-                        </segmentedControl>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="refreshTransports:" target="-2" id="jSL-yx-3Kf"/>
+                        </connections>
                     </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
-                    <toolbarItem reference="P5M-Qz-iUZ"/>
+                    <toolbarItem reference="Eto-Ds-DQO"/>
                 </defaultToolbarItems>
             </toolbar>
             <connections>
@@ -410,7 +409,7 @@
         </imageView>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRefreshTemplate" width="11" height="15"/>
         <image name="link" width="24" height="24"/>
     </resources>
 </document>

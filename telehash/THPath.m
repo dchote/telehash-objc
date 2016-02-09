@@ -7,6 +7,7 @@
 //
 
 #import "THPath.h"
+#import "THTransportAssistant.h"
 
 @implementation THPath
 
@@ -26,7 +27,14 @@
 }
 
 - (NSString *)uriString {
-	return [NSString stringWithFormat:@"%@:%@:%d", self.type, self.ip, self.port];
+	if (self.ip) {
+		if ([THTransportAssistant determineHostType:self.ip] == THHostIPv4Address) {
+			return [NSString stringWithFormat:@"%@:%@:%d", self.type, self.ip, self.port];
+		} else {
+			return [NSString stringWithFormat:@"%@:[%@]:%d", self.type, self.ip, self.port];
+		}
+	}
+	return nil;
 }
 
 - (NSString *)description {
