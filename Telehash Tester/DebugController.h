@@ -16,7 +16,7 @@
 
 @property IBOutlet NSSplitView* horizontalSplit;
 @property IBOutlet NSOutlineView* interfaceList;
-@property IBOutlet NSOutlineView* peerList;
+@property IBOutlet NSOutlineView* endpointList;
 @property IBOutlet NSTableView* packetLog;
 
 
@@ -24,6 +24,6 @@
 
 + (DebugController *)sharedController;
 
-- (void)refreshInterfaceList;
+- (void)refreshLists;
 
 @end

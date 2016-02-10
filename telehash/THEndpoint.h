@@ -27,12 +27,15 @@ typedef enum {
 
 @property (weak) THMesh* mesh;
 
-@property THHashname* remoteHashname;
+@property THHashname* hashname;
 
 @property THEndpointStatus status;
 
 @property THLink* establishedLink;
+@property NSMutableArray* paths;
 @property NSMutableArray* pipes;
+
+@property (readonly) NSString* addressDescription;
 
 
 + (THEndpoint *)initWithMesh:(THMesh *)mesh;

@@ -44,13 +44,14 @@
 - (void)windowDidLoad {
 	THLogMethodCall
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshInterfaceList) name:THMeshStateChange object:nil];
-	}
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshLists) name:THMeshStateChange object:nil];
+}
 
-- (void)refreshInterfaceList {
+- (void)refreshLists {
 	THLogMethodCall
 	
 	[self.interfaceList reloadData];
+	[self.endpointList reloadData];
 }
 
 #pragma -
@@ -68,6 +69,9 @@
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
 	if (outlineView == self.interfaceList) {
 		return self.mesh.activeTransports.count;
+	} else if (outlineView == self.endpointList) {
+		NSArray* endpointKeys = [self.mesh.endpoints allKeys];
+		return endpointKeys.count;
 	}
 	
 	return 0;
@@ -77,12 +81,19 @@
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
 	if (outlineView == self.interfaceList) {
 		return [self.mesh.activeTransports objectAtIndex:index];
+	} else if (outlineView == self.endpointList) {
+		NSArray* endpointKeys = [self.mesh.endpoints allKeys];
+		return [self.mesh.endpoints objectForKey:[endpointKeys objectAtIndex:index]];
 	}
 	
 	return nil;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
+	if (outlineView == self.endpointList) {
+		return YES;
+	}
+	
 	return NO;
 }
 

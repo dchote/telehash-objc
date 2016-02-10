@@ -62,4 +62,8 @@
 	return self.hashnameCache;
 }
 
+- (NSString *)description {
+	return self.hashname;
+}
+
 @end

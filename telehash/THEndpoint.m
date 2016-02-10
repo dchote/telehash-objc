@@ -18,8 +18,9 @@
 	self = [super init];
 	
 	self.mesh = nil;
-	self.remoteHashname = nil;
+	self.hashname = nil;
 	self.establishedLink = nil;
+	self.paths = [NSMutableArray array];
 	self.pipes = [NSMutableArray array];
 	
 	self.status = THEndpointStatusPending;
@@ -27,6 +28,15 @@
 	return self;
 }
 
+- (NSString *)addressDescription {
+	NSString* addressDescription = @"";
+	
+	for (THPath* path in self.paths) {
+		addressDescription = [addressDescription stringByAppendingFormat:@"%@ ", path.description];
+	}
+	
+	return [addressDescription stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+}
 
 + (THEndpoint *)initWithMesh:(THMesh *)mesh {
 	THLogMethodCall
@@ -73,10 +83,9 @@
 			}];
 			
 			if (hashname.keys.count > 0) {
-				endpoint.remoteHashname = hashname;
+				endpoint.hashname = hashname;
 			}
 			
-			NSMutableArray* endpointPaths = [NSMutableArray array];
 			NSArray* paths = [jsonDictionary objectForKey:@"paths"];
 			for (NSDictionary* path in paths) {
 				THPath* endpointPath = [[THPath alloc] init];
@@ -84,11 +93,11 @@
 				endpointPath.port = [[path objectForKey:@"port"] unsignedIntegerValue];
 				endpointPath.type = [path objectForKey:@"type"];
 				
-				[endpointPaths addObject:endpointPath];
+				[endpoint.paths addObject:endpointPath];
 			}
 			
-			if (endpointPaths.count > 0) {
-				[endpoint generatePipesFromPaths:endpointPaths];
+			if (endpoint.paths.count > 0) {
+				[endpoint generatePipesFromPaths:endpoint.paths];
 			}
 			
 		}
@@ -104,7 +113,7 @@
 		THEndpoint* endpoint = [THEndpoint initWithMesh:mesh];
 		
 		if (uri.hashname) {
-			endpoint.remoteHashname = uri.hashname;
+			endpoint.hashname = uri.hashname;
 		}
 		
 		[endpoint generatePipesFromPaths:uri.paths];
@@ -129,7 +138,7 @@
 				THPipe* pipe = [transport pipeFromPath:path];
 				
 				if (pipe && ![self.pipes containsObject:pipe]) {
-					THLogDebugMessage(@"adding pipe %@ to endpoint %@", pipe.info, self.remoteHashname.hashname);
+					THLogDebugMessage(@"adding pipe %@ to endpoint %@", pipe.info, self.hashname);
 					[self.pipes addObject:pipe];
 				}
 			}
