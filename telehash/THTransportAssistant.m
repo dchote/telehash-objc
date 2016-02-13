@@ -277,7 +277,7 @@ static void reachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 		CFRelease(reachability);
 	}
 	
-	THLogErrorTHessage(@"unable to setup reachability");
+	THLogErrorMessage(@"unable to setup reachability");
 }
 
 - (void)logTransportStateChange:(NSNotification *)aNotification {

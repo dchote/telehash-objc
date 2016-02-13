@@ -55,7 +55,7 @@
 	}
 	
 	if (!self.hashnameCache) {
-		THLogErrorTHessage(@"hashname rollup failed");
+		THLogErrorMessage(@"hashname rollup failed");
 		return @"unknown";
 	}
 	

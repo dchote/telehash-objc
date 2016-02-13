@@ -40,7 +40,7 @@
 	if ([self.availableBaudRates containsObject:baudRate]) {
 		serialPort.baudRate = baudRate;
 	} else {
-		THLogErrorTHessage(@"attempting to set an invalid baud rate %@", baudRate);
+		THLogErrorMessage(@"attempting to set an invalid baud rate %@", baudRate);
 	}
 }
 
@@ -72,7 +72,7 @@
 		return pipe;
 	}
 	
-	THLogErrorTHessage(@"transport with identifier %@ does not support path type %@", self.identifier, path.type);
+	THLogErrorMessage(@"transport with identifier %@ does not support path type %@", self.identifier, path.type);
 	return nil;
 }
 

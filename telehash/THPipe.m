@@ -49,15 +49,15 @@
 
 
 - (void)send:(NSData *)data {
-	THLogErrorTHessage(@"This method should not be called directly");
+	THLogErrorMessage(@"This method should not be called directly");
 }
 
 - (void)recieved:(NSData *)data {
-	THLogErrorTHessage(@"This method should not be called directly");
+	THLogErrorMessage(@"This method should not be called directly");
 }
 
 - (void)close {
-	THLogErrorTHessage(@"This method should not be called directly");
+	THLogErrorMessage(@"This method should not be called directly");
 }
 
 @end

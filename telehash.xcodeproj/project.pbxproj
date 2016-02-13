@@ -375,10 +375,10 @@
 				65A53B9C1B7D160D00150176 /* THMesh.m */,
 				657D86811B7FA8C8009282BE /* THMeshConfiguration.h */,
 				657D86821B7FA8C8009282BE /* THMeshConfiguration.m */,
-				65A53BA91B7D171000150176 /* THLink.h */,
-				65A53BAA1B7D171000150176 /* THLink.m */,
 				65435D711C6237D400BF7101 /* THPath.h */,
 				65435D6F1C6237C500BF7101 /* THPath.m */,
+				65A53BA91B7D171000150176 /* THLink.h */,
+				65A53BAA1B7D171000150176 /* THLink.m */,
 			);
 			name = Mesh;
 			sourceTree = "<group>";

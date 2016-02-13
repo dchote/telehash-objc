@@ -100,11 +100,11 @@ NSString* const THMeshStateChange = @"THMeshStateChange";
 		
 		routerEndpoint = [THEndpoint endpointFromURI:uri withMesh:self];
 		
-		if (routerEndpoint.hashname && routerEndpoint.status != THEndpointStatusError) {
-			THLogDebugMessage(@"Adding router endpoint with hashname %@ to mesh", routerEndpoint.hashname);
+		if (routerEndpoint.hashname && routerEndpoint.link.status != THLinkStatusError) {
+			THLogDebugMessage(@"Adding router endpoint with hashname %@ to mesh", routerEndpoint.hashname.hashname);
 			[self.endpoints setObject:routerEndpoint forKey:routerEndpoint.hashname.hashname];
 		} else {
-			THLogErrorTHessage(@"Unable to add router with URI %@ to mesh", uriString);
+			THLogErrorMessage(@"Unable to add router with URI %@ to mesh", uriString);
 		}
 	}
 	
@@ -120,15 +120,22 @@ NSString* const THMeshStateChange = @"THMeshStateChange";
 			
 			routerEndpoint = [THEndpoint endpointFromFile:routerFilePath withMesh:self];
 			
-			if (routerEndpoint.hashname && routerEndpoint.status != THEndpointStatusError) {
-				THLogDebugMessage(@"Adding router endpoint with hashname %@ to mesh", routerEndpoint.hashname);
+			if (routerEndpoint.hashname && routerEndpoint.link.status != THLinkStatusError) {
+				THLogDebugMessage(@"Adding router endpoint with hashname %@ to mesh", routerEndpoint.hashname.hashname);
 				[self.endpoints setObject:routerEndpoint forKey:routerEndpoint.hashname.hashname];
 				
 				[[NSNotificationCenter defaultCenter] postNotificationName:THMeshStateChange object:self userInfo:nil];
 			} else {
-				THLogErrorTHessage(@"Unable to add router file %@ to mesh", fileName);
+				THLogErrorMessage(@"Unable to add router file %@ to mesh", fileName);
 			}
 		}
+	}
+	
+	
+	// establish router links
+	for (NSString* hashname in [self.endpoints allKeys]) {
+		THEndpoint* endpoint = [self.endpoints objectForKey:hashname];
+		[endpoint.link establish];
 	}
 }
 

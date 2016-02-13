@@ -103,7 +103,7 @@
 			self.active = NO;
 			self.status = THTransportStatusError;
 
-			THLogErrorTHessage(@"error binding udpSocket %@ %@", self.identifier, [bindError description]);
+			THLogErrorMessage(@"error binding udpSocket %@ %@", self.identifier, [bindError description]);
 			
 			if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
 				[self.delegate THTransportError:self error:bindError];
@@ -117,7 +117,7 @@
 			self.active = NO;
 			self.status = THTransportStatusError;
 
-			THLogErrorTHessage(@"udpSocket %@ had error %@", self.identifier, [listenError description]);
+			THLogErrorMessage(@"udpSocket %@ had error %@", self.identifier, [listenError description]);
 			
 			if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
 				[self.delegate THTransportError:self error:listenError];
@@ -146,7 +146,7 @@
 			self.active = NO;
 			self.status = THTransportStatusError;
 			
-			THLogErrorTHessage(@"tcpSocket %@ had error %@", self.identifier, [listenError description]);
+			THLogErrorMessage(@"tcpSocket %@ had error %@", self.identifier, [listenError description]);
 			
 			if ([self.delegate respondsToSelector:@selector(THTransportError:error:)]) {
 				[self.delegate THTransportError:self error:listenError];
@@ -228,7 +228,7 @@
 		return pipe;
 	}
 	
-	THLogErrorTHessage(@"transport with identifier %@ does not support path type %@", self.identifier, path.type);
+	THLogErrorMessage(@"transport with identifier %@ does not support path type %@", self.identifier, path.type);
 	return nil;
 }
 

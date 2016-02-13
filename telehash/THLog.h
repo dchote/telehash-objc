@@ -13,7 +13,7 @@
 #pragma mark THEventLogger Macros
 
 #define THLogMethodCall [[NSNotificationCenter defaultCenter] postNotificationName:THLMethodCallEvent object:self userInfo:[NSDictionary dictionaryWithObject:NSStringFromSelector(_cmd) forKey:THLEventLoggedMethodName]];
-#define THLogErrorTHessage(...) [[NSNotificationCenter defaultCenter] postNotificationName:THLErrorEvent object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:([NSString stringWithFormat:__VA_ARGS__]), THLEventLoggedMessage, NSStringFromSelector(_cmd), THLEventLoggedMethodName, nil]];
+#define THLogErrorMessage(...) [[NSNotificationCenter defaultCenter] postNotificationName:THLErrorEvent object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:([NSString stringWithFormat:__VA_ARGS__]), THLEventLoggedMessage, NSStringFromSelector(_cmd), THLEventLoggedMethodName, nil]];
 #define THLogWarningMessage(...) [[NSNotificationCenter defaultCenter] postNotificationName:THLWarningEvent object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:([NSString stringWithFormat:__VA_ARGS__]), THLEventLoggedMessage, NSStringFromSelector(_cmd), THLEventLoggedMethodName, nil]];
 #define THLogNoticeMessage(...) [[NSNotificationCenter defaultCenter] postNotificationName:THLNoticeEvent object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:([NSString stringWithFormat:__VA_ARGS__]), THLEventLoggedMessage, NSStringFromSelector(_cmd), THLEventLoggedMethodName, nil]];
 #define THLogInfoMessage(...) [[NSNotificationCenter defaultCenter] postNotificationName:THLInfoEvent object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:([NSString stringWithFormat:__VA_ARGS__]), THLEventLoggedMessage, NSStringFromSelector(_cmd), THLEventLoggedMethodName, nil]];

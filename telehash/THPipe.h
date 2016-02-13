@@ -38,7 +38,6 @@ typedef enum {
 @property NSUInteger lastInboundActivity;
 @property NSUInteger lastOutboundActivity;
 
-
 - (void)send:(NSData *)data;
 - (void)recieved:(NSData *)data;
 - (void)close;

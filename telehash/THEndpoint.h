@@ -12,28 +12,21 @@
 #import "THHashname.h"
 #import "THURI.h"
 #import "THLink.h"
-#import "THTransportAssistant.h"
 
 @class THMesh;
 
-typedef enum {
-	THEndpointStatusPending,
-	THEndpointStatusReady,
-	THEndpointStatusConnected,
-	THEndpointStatusError,
-} THEndpointStatus;
 
 @interface THEndpoint : NSObject
 
-@property (weak) THMesh* mesh;
+@property THMesh* mesh;
 
 @property THHashname* hashname;
 
-@property THEndpointStatus status;
-
-@property THLink* establishedLink;
 @property NSMutableArray* paths;
-@property NSMutableArray* pipes;
+
+@property THLink* link;
+@property NSMutableArray* channels;
+
 
 @property (readonly) NSString* addressDescription;
 
@@ -42,6 +35,4 @@ typedef enum {
 + (THEndpoint *)endpointFromFile:(NSString *)filePath withMesh:(THMesh *)mesh;
 + (THEndpoint *)endpointFromJSON:(NSData *)json withMesh:(THMesh *)mesh;
 + (THEndpoint *)endpointFromURI:(THURI *)uri withMesh:(THMesh *)mesh;
-
-- (void)generatePipesFromPaths:(NSArray *)paths;
 @end

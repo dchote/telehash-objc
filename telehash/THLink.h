@@ -10,6 +10,33 @@
 
 #import "THLog.h"
 
+@class THMesh;
+@class THEndpoint;
+
+typedef enum {
+	THLinkStatusPending,
+	THLinkStatusReady,
+	THLinkStatusEstablishing,
+	THLinkStatusConnected,
+	THLinkStatusError,
+} THLinkStatus;
+
 @interface THLink : NSObject
 
+@property THEndpoint* endpoint;
+
+@property THLinkStatus status;
+
+@property NSMutableArray* pipes;
+
+@property NSUInteger lastInboundActivity;
+@property NSUInteger lastOutboundActivity;
+
++ (THLink *)initWithEndpoint:(THEndpoint *)endpoint;
+
+- (void)generatePipesFromPaths:(NSArray *)paths;
+
+- (void)establish;
+- (void)sync;
+- (void)handshake;
 @end

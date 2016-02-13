@@ -30,7 +30,7 @@ NSInteger const THTransportTimeout = 30;
 }
 
 - (void)shutdown {
-	THLogErrorTHessage(@"class did not implement shutdown method");
+	THLogErrorMessage(@"class did not implement shutdown method");
 }
 
 - (NSString *)addressDescription {
@@ -63,12 +63,12 @@ NSInteger const THTransportTimeout = 30;
 }
 
 - (NSArray *)paths {
-	THLogErrorTHessage(@"This method should not be called directly");
+	THLogErrorMessage(@"This method should not be called directly");
 	return nil;
 }
 
 - (THPipe *)pipeFromPath:(THPath *)path {
-	THLogErrorTHessage(@"This method should not be called directly");
+	THLogErrorMessage(@"This method should not be called directly");
 	return nil;
 }
 

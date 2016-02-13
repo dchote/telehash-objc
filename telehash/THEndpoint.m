@@ -19,12 +19,12 @@
 	
 	self.mesh = nil;
 	self.hashname = nil;
-	self.establishedLink = nil;
+
 	self.paths = [NSMutableArray array];
-	self.pipes = [NSMutableArray array];
 	
-	self.status = THEndpointStatusPending;
-	
+	self.link = [THLink initWithEndpoint:self];
+	self.channels = [NSMutableArray array];
+
 	return self;
 }
 
@@ -68,7 +68,7 @@
 		NSMutableDictionary* jsonDictionary = [NSJSONSerialization JSONObjectWithData:json options:0 error:&error];
 		
 		if (error) {
-			THLogErrorTHessage(@"json decode error: %@", [error localizedDescription]);
+			THLogErrorMessage(@"json decode error: %@", [error localizedDescription]);
 		} else if (jsonDictionary) {
 			THHashname* hashname = [[THHashname alloc] init];
 			
@@ -97,7 +97,7 @@
 			}
 			
 			if (endpoint.paths.count > 0) {
-				[endpoint generatePipesFromPaths:endpoint.paths];
+				[endpoint.link generatePipesFromPaths:endpoint.paths];
 			}
 			
 		}
@@ -116,37 +116,12 @@
 			endpoint.hashname = uri.hashname;
 		}
 		
-		[endpoint generatePipesFromPaths:uri.paths];
+		[endpoint.link generatePipesFromPaths:uri.paths];
 		
 		return endpoint;
 	}
 	
 	return nil;
-}
-
-
-
-- (void)generatePipesFromPaths:(NSArray *)paths {
-	THLogMethodCall
-	
-	// TODO track already created pipes by URI key or something, so dont create duups
-	
-	for (THPath* path in paths) {
-		for (THTransport* transport in self.mesh.activeTransports) {
-			// check to see if the transport supports the path type
-			if (transport.active && [transport.enabledPathTypes	containsObject:path.type]) {
-				THPipe* pipe = [transport pipeFromPath:path];
-				
-				if (pipe && ![self.pipes containsObject:pipe]) {
-					THLogDebugMessage(@"adding pipe %@ to endpoint %@", pipe.info, self.hashname);
-					[self.pipes addObject:pipe];
-				}
-			}
-		}
-	}
-	
-	
-	// TODO notification of pipes ready
 }
 
 @end

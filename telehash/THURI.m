@@ -32,7 +32,7 @@ uint16_t const THDefaultPort = 42424;
 	uri.hashname = [[THHashname alloc] init];
 	
 	if (![URIComponents.scheme isEqualToString:@"link"]) {
-		THLogErrorTHessage(@"non-link uri specified");
+		THLogErrorMessage(@"non-link uri specified");
 		return nil;
 	} else {
 		THPath* path = [[THPath alloc] init];
